@@ -1,0 +1,15 @@
+{
+  "information": [
+    { "text": "Home", "path": "/" },
+    { "text": "Our Products", "path": "/#products" },
+    { "text": "Benefits", "path": "/#benefits" },
+    { "text": "About Us", "path": "/about" }
+  ],
+  "contact": {
+    "email": "info@warriorleap.com",
+    "phone": "+961 71 457 820",
+    "address": "Beirut, Lebanon",
+    "instagram": "warrior.leap"
+  },
+  "copyright": "© {year} Warrior Leap. All rights reserved."
+}

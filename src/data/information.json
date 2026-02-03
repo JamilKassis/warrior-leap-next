@@ -1,0 +1,58 @@
+{
+  "title": "Experience the Power of Cold Therapy",
+  "description": "Discover how cold therapy can transform your physical performance, mental resilience, and overall well-being through our scientifically-backed solutions.",
+  "sections": [
+    {
+      "icon": "Thermometer",
+      "title": "Cold Immersion Therapy",
+      "description": "Experience the proven benefits of controlled cold exposure for recovery and wellness.",
+      "image": "https://via.placeholder.com/800x600/0056b3/ffffff?text=Cold+Immersion+Therapy",
+      "includes": [
+        "Professional-grade temperature control",
+        "Customizable exposure protocols",
+        "Safe and comfortable immersion",
+        "Optimal therapeutic conditions"
+      ],
+      "path": "/products"
+    },
+    {
+      "icon": "Brain",
+      "title": "Mental Resilience",
+      "description": "Build mental toughness and emotional strength through cold exposure.",
+      "image": "https://via.placeholder.com/800x600/004080/ffffff?text=Mental+Resilience",
+      "includes": [
+        "Stress response optimization",
+        "Focus and clarity enhancement",
+        "Willpower development",
+        "Emotional resilience training"
+      ],
+      "path": "/products"
+    },
+    {
+      "icon": "Dumbbell",
+      "title": "Athletic Performance",
+      "description": "Improve your training results with targeted cold therapy for athletes.",
+      "image": "https://via.placeholder.com/800x600/003366/ffffff?text=Athletic+Performance",
+      "includes": [
+        "Rapid recovery protocols",
+        "Performance optimization",
+        "Injury prevention",
+        "Training adaptation support"
+      ],
+      "path": "/products"
+    },
+    {
+      "icon": "Heart",
+      "title": "Health & Wellness",
+      "description": "Support your everyday health with the benefits of regular cold exposure.",
+      "image": "https://via.placeholder.com/800x600/005599/ffffff?text=Health+and+Wellness",
+      "includes": [
+        "Immune system strengthening",
+        "Sleep quality improvement",
+        "Stress reduction",
+        "Metabolic health support"
+      ],
+      "path": "/products"
+    }
+  ]
+}

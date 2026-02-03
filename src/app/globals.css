@@ -1,0 +1,445 @@
+@import "tailwindcss";
+
+/* ========================================
+   FONT FACES
+   ======================================== */
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/assets/fonts/ProximaNovaLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/assets/fonts/ProximaNovaRegular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/assets/fonts/ProximaNovaBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url("/assets/fonts/FuturaLight.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url("/assets/fonts/FuturaMedium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url("/assets/fonts/FuturaBold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ========================================
+   TAILWIND V4 THEME CONFIGURATION
+   ======================================== */
+
+@theme {
+  /* Breakpoints */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Brand Colors */
+  --color-brand-light: #c5d1dd;
+  --color-brand-primary: #496163;
+  --color-brand-dark: #091c22;
+
+  /* Font Families */
+  --font-sans: "Proxima Nova", system-ui, sans-serif;
+  --font-display: "Futura", system-ui, sans-serif;
+
+  /* Animations */
+  --animate-fade-in-up: fadeInUp 1s ease-out forwards;
+  --animate-spin-slow: spin 3s linear infinite;
+  --animate-bounce: bounce 2s infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 5s linear infinite;
+  --animate-scale-fade-in: scaleFadeIn 0.5s ease-out forwards;
+  --animate-slide-up-fade: slideUpFade 0.6s ease-out forwards;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-typing: typing 3s steps(12) forwards;
+  --animate-blink-caret: blinkCaret 0.75s step-end infinite;
+  --animate-scroll-down: scrollDown 2s ease-in-out infinite;
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-marquee2: marquee2 25s linear infinite;
+  --animate-marquee-fast: marquee 12s linear infinite;
+  --animate-marquee-mobile: marquee 10s linear infinite;
+  --animate-bounce-delayed: bounce 2s infinite 0.5s;
+  --animate-whatsapp-pulse: whatsappPulse 2s infinite;
+
+  /* Box Shadows */
+  --shadow-glow: 0 0 15px rgba(73, 97, 99, 0.5), 0 0 5px rgba(73, 97, 99, 0.3);
+  --shadow-glow-lg: 0 0 25px rgba(73, 97, 99, 0.6), 0 0 8px rgba(73, 97, 99, 0.4);
+  --shadow-glow-white: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes scaleFadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+  0% { width: 0; border-right: 0.15em solid #496163; }
+  100% { width: 100%; border-right: 0.15em solid #496163; }
+}
+
+@keyframes blinkCaret {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #496163; }
+}
+
+@keyframes scrollDown {
+  0% { opacity: 1; transform: translate(-50%, 0); }
+  50% { opacity: 0; transform: translate(-50%, 6px); }
+  51% { opacity: 0; transform: translate(-50%, -6px); }
+  100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee2 {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes whatsappPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes orbit {
+  0% { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(360deg); }
+}
+
+@keyframes snowfall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+  10% { opacity: var(--opacity, 0.3); }
+  90% { opacity: var(--opacity, 0.3); }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* ========================================
+   CUSTOM UTILITIES (Tailwind v4 @utility)
+   ======================================== */
+
+@utility text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@utility text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@utility text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+@utility text-shadow-none {
+  text-shadow: none;
+}
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+@utility pl-safe {
+  padding-left: env(safe-area-inset-left);
+}
+
+@utility pr-safe {
+  padding-right: env(safe-area-inset-right);
+}
+
+@utility section-padding {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  @media (min-width: 768px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  @media (min-width: 1024px) {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@utility section-margin {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  @media (min-width: 768px) {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 1024px) {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+}
+
+/* ========================================
+   BASE STYLES (must be in @layer base so
+   Tailwind utilities can override them)
+   ======================================== */
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --brand-primary-rgb: 73, 97, 99;
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 2rem);
+  }
+
+  body {
+    background: linear-gradient(to bottom right, #091c22, rgba(9, 28, 34, 0.9), rgba(9, 28, 34, 0.8));
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: auto;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  section {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding-bottom: 2rem;
+    scroll-margin-top: 80px;
+  }
+
+  @media (max-width: 768px) {
+    section {
+      scroll-margin-top: 64px;
+    }
+  }
+
+  h1 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  @media (min-width: 768px) {
+    h1 { font-size: 2.25rem; line-height: 2.5rem; }
+  }
+  @media (min-width: 1024px) {
+    h1 { font-size: 3rem; line-height: 1; }
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  @media (min-width: 768px) {
+    h2 { font-size: 1.875rem; line-height: 2.25rem; }
+  }
+  @media (min-width: 1024px) {
+    h2 { font-size: 2.25rem; line-height: 2.5rem; }
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  @media (min-width: 768px) {
+    h3 { font-size: 1.5rem; line-height: 2rem; }
+  }
+
+  p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    p { font-size: 1rem; line-height: 1.5rem; }
+  }
+
+  main {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+}
+
+/* ========================================
+   MOBILE OPTIMIZATIONS
+   ======================================== */
+
+@layer base {
+  .mobile-hero-text {
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .mobile-hero-text { text-align: left; }
+  }
+
+  .mobile-fixed-cta {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 50;
+    border-radius: 0.5rem;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
+    padding: 0.75rem 1rem;
+  }
+
+  @media (max-width: 480px) {
+    h1 { line-height: 1.2; }
+    .font-display { letter-spacing: -0.5px; }
+    button, a { min-height: 44px; min-width: 44px; }
+    #hero > div > div {
+      padding-left: 1.25rem !important;
+      padding-right: 1.25rem !important;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root { color-scheme: dark; }
+  }
+}
+
+/* ========================================
+   CUSTOM EFFECTS
+   ======================================== */
+
+@layer components {
+  /* Orbital animations */
+  .animate-orbit-slow { animation: orbit 60s linear infinite; }
+  .animate-orbit-medium { animation: orbit 40s linear infinite reverse; }
+  .animate-orbit-fast { animation: orbit 20s linear infinite; }
+
+  /* Glow effects */
+  .glow { box-shadow: 0 0 15px 2px rgba(73, 97, 99, 0.3); }
+  .glow-strong { box-shadow: 0 0 25px 5px rgba(73, 97, 99, 0.5); }
+
+  /* 3D */
+  .preserve-3d { transform-style: preserve-3d; }
+  .perspective { perspective: 1200px; }
+
+  /* Hover effects */
+  .hover-lift { transition: transform 0.3s ease-out; }
+  .hover-lift:hover { transform: translateY(-5px) scale(1.03); }
+
+  /* Frost effect */
+  .frost-bg {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .frost-hover:hover {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.07));
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Ice crystal effect */
+  .ice-crystal { position: relative; overflow: hidden; }
+  .ice-crystal::before,
+  .ice-crystal::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .ice-crystal::before {
+    top: 0; left: 0; width: 100%; height: 30%;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+  .ice-crystal::after {
+    bottom: 0; right: 0; width: 100%; height: 30%;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+  .ice-crystal:hover::before,
+  .ice-crystal:hover::after { opacity: 0.5; }
+
+  /* Background grid pattern */
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  }
+}
+
+/* Scrollbar styles (must be unlayered - pseudo-elements not in layers) */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #091c22; }
+::-webkit-scrollbar-thumb { background: #496163; border-radius: 5px; border: 2px solid #091c22; }
+::-webkit-scrollbar-thumb:hover { background: #c5d1dd; }

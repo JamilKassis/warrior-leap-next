@@ -1,0 +1,21 @@
+{
+  "name": "Warrior Leap",
+  "short_name": "Warrior Leap",
+  "description": "Premium Ice Tubs and Cold Plunge Solutions in Lebanon",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#496163",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+import type { Metadata } from 'next';
+import Hero from '@/components/home/hero/hero';
+import ProductsSection from '@/components/home/products/products-section';
+import Benefits from '@/components/home/benefits/benefits';
+import { Testimonials } from '@/components/testimonials/testimonials';
+import { TrustBadges } from '@/components/shared/trust-badges';
+import FAQ from '@/components/faq/faq';
+
+export const metadata: Metadata = {
+  title: 'Ice Bath Lebanon | Ice Tub & Cold Plunge - Warrior Leap',
+  description:
+    'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems for recovery and wellness. Best ice bath Lebanon prices. Free delivery across Lebanon.',
+  openGraph: {
+    title: 'Ice Bath Lebanon | Ice Tub & Cold Plunge - Warrior Leap',
+    description:
+      'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems for recovery and wellness. Best ice bath Lebanon prices. Free delivery across Lebanon.',
+    type: 'website',
+    url: 'https://warriorleap.com/',
+  },
+  alternates: {
+    canonical: 'https://warriorleap.com/',
+  },
+};
+
+export default function HomePage() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Hero />
+      <TrustBadges />
+      <div className="flex flex-col">
+        <ProductsSection />
+        <Benefits />
+        <Testimonials />
+        <FAQ />
+      </div>
+    </div>
+  );
+}
