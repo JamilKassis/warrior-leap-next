@@ -17,14 +17,9 @@ function nameToSlug(name: string) {
 }
 
 async function getAllProducts(): Promise<ProductWithInventory[]> {
-  try {
-    const supabase = createServerSupabaseClient();
-    if (!supabase) return [];
-    const { data } = await supabase.from('products_with_inventory').select('*').neq('status', 'inactive');
-    return (data || []) as ProductWithInventory[];
-  } catch {
-    return [];
-  }
+  const supabase = createServerSupabaseClient();
+  const { data } = await supabase.from('products_with_inventory').select('*').neq('status', 'inactive');
+  return (data || []) as ProductWithInventory[];
 }
 
 async function getProductBySlug(slug: string) {

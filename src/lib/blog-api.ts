@@ -64,18 +64,13 @@ export class BlogApiServer {
   }
 
   static async getAllSlugs(): Promise<string[]> {
-    try {
-      const supabase = createServerSupabaseClient();
-      if (!supabase) return [];
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('slug')
-        .eq('status', 'published');
+    const supabase = createServerSupabaseClient();
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('slug')
+      .eq('status', 'published');
 
-      if (error) return [];
-      return (data || []).map((post) => post.slug);
-    } catch {
-      return [];
-    }
+    if (error) throw error;
+    return (data || []).map((post) => post.slug);
   }
 }
