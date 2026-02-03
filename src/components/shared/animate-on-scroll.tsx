@@ -74,7 +74,7 @@ export const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({
 
   const styleObject = {
     ...delayStyle,
-    willChange: (isInView ? 'auto' : 'opacity, transform') as const,
+    willChange: isInView ? 'auto' : ('opacity, transform' as const),
     transitionTimingFunction: 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
   };
 
