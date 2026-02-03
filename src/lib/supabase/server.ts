@@ -9,7 +9,8 @@ export function createServerSupabaseClient() {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error('Missing Supabase environment variables');
+    console.warn('Missing Supabase environment variables');
+    return null as unknown as SupabaseClient;
   }
 
   cachedClient = createClient(supabaseUrl, supabaseAnonKey);
