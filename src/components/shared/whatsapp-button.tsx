@@ -39,7 +39,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ phoneNumber, message })
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className="fixed bottom-6 right-6 pb-safe pr-safe z-50 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#25D366] text-white shadow-xl hover:bg-[#1da851] transition-all duration-300 hover:scale-110 group animate-whatsapp-pulse"
+      className="fixed bottom-20 right-4 md:bottom-6 md:right-6 pb-safe pr-safe z-[60] flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#25D366] text-white shadow-xl hover:bg-[#1da851] transition-all duration-300 hover:scale-110 group animate-whatsapp-pulse"
       style={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.25)' }}
       aria-label="Chat on WhatsApp"
     >

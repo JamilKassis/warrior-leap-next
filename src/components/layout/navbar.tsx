@@ -272,13 +272,13 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="flex-1 flex flex-col justify-center px-8">
-            <nav className="space-y-2">
+            <nav className="space-y-1">
               {navigationItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block w-full text-left text-2xl py-3 border-b border-white/10 transition-colors ${
+                  className={`block w-full text-left text-xl py-2.5 border-b border-white/10 transition-colors ${
                     isCurrentPath(item.path)
                       ? 'text-brand-primary font-medium'
                       : 'text-white/80 hover:text-white'
