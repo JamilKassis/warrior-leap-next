@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Check } from 'lucide-react';
+import { Check, ShoppingCart, MessageCircle } from 'lucide-react';
 import { useCart } from '@/contexts/cart-context';
 import { ProductWithInventory } from '@/types/inventory';
 
@@ -11,6 +11,14 @@ interface ProductCardProps {
   product: ProductWithInventory;
   showAddToCart?: boolean;
   className?: string;
+}
+
+function isNewProduct(createdAt: string): boolean {
+  const created = new Date(createdAt);
+  const now = new Date();
+  const diffMs = now.getTime() - created.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays <= 30;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -23,7 +31,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   if (!product) {
     return (
-      <div className={`group relative bg-white rounded-xl shadow-lg overflow-hidden ${className}`}>
+      <div className={`group relative bg-white rounded-2xl overflow-hidden border border-gray-100 ${className}`}>
         <div className="p-6">
           <p className="text-gray-500 text-center">Product unavailable</p>
         </div>
@@ -62,97 +70,119 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const isOutOfStock = product.computed_status === 'out_of_stock';
   const isInactive = product.computed_status === 'inactive';
   const isUnavailable = isOutOfStock || isInactive;
-
-  const getStatusBadge = () => {
-    if (isInactive) {
-      return (
-        <span className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold z-10">
-          Unavailable
-        </span>
-      );
-    }
-
-    if (isOutOfStock) {
-      return (
-        <span className="absolute top-2 left-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-semibold z-10">
-          Out of Stock
-        </span>
-      );
-    }
-
-    if (product.original_price && product.original_price > product.price) {
-      const discount = Math.round(((product.original_price - product.price) / product.original_price) * 100);
-      return (
-        <span className="absolute top-2 left-2 bg-red-500 text-white px-3 py-2 rounded-full text-sm font-bold shadow-md z-10">
-          -{discount}%
-        </span>
-      );
-    }
-
-    return null;
-  };
+  const isNew = product.created_at && isNewProduct(product.created_at);
+  const hasDiscount = product.original_price && product.original_price > product.price;
+  const discount = hasDiscount
+    ? Math.round(((product.original_price! - product.price) / product.original_price!) * 100)
+    : 0;
 
   return (
-    <div
-      className={`group relative bg-white rounded-xl border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden w-full h-full flex flex-col ${className}`}
-    >
-      <Link href={`/products/${urlFriendlyName}`} className="block flex flex-col h-full relative">
-        {/* Image Container */}
-        <div className="relative aspect-square overflow-hidden flex-shrink-0 bg-gray-100">
-          <Image
-            src={product.image_url}
-            alt={product.name}
-            fill
-            className="object-contain p-2"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            loading="lazy"
-          />
-          {getStatusBadge()}
-        </div>
+    <div className={`group relative ${className}`}>
+      <Link href={`/products/${urlFriendlyName}`} className="block">
+        {/* Card Container */}
+        <div className="relative h-full bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1 flex flex-col">
 
-        {/* Content */}
-        <div className="p-3 md:p-4 flex-1 flex flex-col">
-          <h3 className="font-medium text-sm text-gray-900 mb-1 line-clamp-2">{product.name}</h3>
-          <div className="flex items-baseline gap-2">
-            <span className="text-sm font-bold text-brand-primary">${product.price.toFixed(0)}</span>
-            {product.original_price && product.original_price > product.price && (
-              <span className="text-xs text-gray-400 line-through">${product.original_price.toFixed(0)}</span>
-            )}
+          {/* Image Section */}
+          <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-stone-100 overflow-hidden">
+            <Image
+              src={product.image_url}
+              alt={product.name}
+              fill
+              className="object-contain p-3 md:p-6 transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              loading="lazy"
+            />
+
+            {/* Top Badges - Only NEW and Discount */}
+            <div className="absolute top-2 left-2 right-2 md:top-3 md:left-3 md:right-3 flex justify-between items-start z-10">
+              {/* Left Badge: NEW only */}
+              <div>
+                {isNew && !isUnavailable && (
+                  <span className="inline-block bg-emerald-500 text-white px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-lg text-[10px] md:text-xs font-bold tracking-wider shadow-lg">
+                    NEW
+                  </span>
+                )}
+              </div>
+
+              {/* Right Badge: Discount */}
+              {hasDiscount && (
+                <span className="inline-block bg-red-500 text-white px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-lg text-[10px] md:text-xs font-bold shadow-lg">
+                  -{discount}%
+                </span>
+              )}
+            </div>
           </div>
-          {product.computed_status === 'inactive' && (
-            <span className="text-xs text-red-500 font-medium mt-1">Unavailable</span>
-          )}
+
+          {/* Content Section */}
+          <div className="p-3 md:p-5 flex flex-col flex-1">
+            {/* Product Name */}
+            <h3 className="font-semibold text-gray-900 text-sm md:text-base leading-snug line-clamp-2 mb-2 group-hover:text-brand-primary transition-colors">
+              {product.name}
+            </h3>
+
+            {/* Price + Status */}
+            <div className="flex items-baseline gap-1.5 md:gap-2 mb-3 md:mb-4">
+              <span className="text-base md:text-xl font-bold text-gray-900">
+                ${product.price.toFixed(0)}
+              </span>
+              {hasDiscount && (
+                <span className="text-sm text-gray-400 line-through">
+                  ${product.original_price!.toFixed(0)}
+                </span>
+              )}
+              {isOutOfStock && (
+                <span className="text-xs text-amber-600 font-medium ml-auto">Out of Stock</span>
+              )}
+              {isInactive && (
+                <span className="text-xs text-gray-500 font-medium ml-auto">Unavailable</span>
+              )}
+            </div>
+
+            {/* Spacer to push button to bottom */}
+            <div className="flex-1" />
+
+            {/* Add to Cart Button - Always visible */}
+            {isOutOfStock ? (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(`https://wa.me/96171457820?text=${encodeURIComponent(`Hi, I'd like to preorder: ${product.name}`)}`, '_blank', 'noopener,noreferrer');
+                }}
+                className="group/btn w-full flex items-center justify-center gap-2 bg-gray-100 text-gray-700 rounded-xl py-2.5 md:py-3 font-semibold text-xs md:text-sm transition-all duration-200 hover:bg-gradient-to-r hover:from-brand-dark hover:to-brand-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                <MessageCircle className="w-4 h-4 transition-transform duration-200 group-hover/btn:scale-110" />
+                <span>Preorder</span>
+              </button>
+            ) : showAddToCart && !isInactive ? (
+              <button
+                onClick={handleAddToCart}
+                className={`group/btn w-full flex items-center justify-center gap-2 py-2.5 md:py-3 rounded-xl font-semibold text-xs md:text-sm transition-all duration-200 ${
+                  isAdded
+                    ? 'bg-emerald-500 text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gradient-to-r hover:from-brand-dark hover:to-brand-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98]'
+                }`}
+              >
+                {isAdded ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>Added</span>
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart className="w-4 h-4 transition-transform duration-200 group-hover/btn:scale-110" />
+                    <span>Add to Cart</span>
+                  </>
+                )}
+              </button>
+            ) : isInactive ? (
+              <div className="w-full bg-gray-100 text-gray-400 rounded-xl py-3 px-4 text-center text-sm font-medium">
+                Unavailable
+              </div>
+            ) : null}
+          </div>
         </div>
       </Link>
-
-      {/* Add to Cart Button or Preorder Info */}
-      <div className="px-2 pb-1.5 md:px-4 md:pb-4">
-        {isOutOfStock ? (
-          <div className="w-full bg-brand-primary/10 border border-brand-primary/30 rounded-lg py-2 px-3 text-center">
-            <p className="text-sm font-semibold text-brand-primary">Preorder Available</p>
-            <p className="text-xs text-brand-dark/70">Contact us on WhatsApp</p>
-          </div>
-        ) : showAddToCart && !isInactive ? (
-          <button
-            onClick={handleAddToCart}
-            disabled={isUnavailable}
-            className={`w-full flex items-center justify-center min-h-0 h-9 md:h-auto md:py-2 rounded font-medium text-xs md:text-sm leading-none transition-all duration-200 ${
-              isAdded
-                ? 'bg-green-500 text-white'
-                : 'bg-brand-primary text-white hover:bg-brand-primary/90'
-            }`}
-          >
-            {isAdded ? (
-              <>
-                <Check className="w-4 h-4 mr-1.5" />
-                Added
-              </>
-            ) : (
-              'Add to Cart'
-            )}
-          </button>
-        ) : null}
-      </div>
     </div>
   );
 };

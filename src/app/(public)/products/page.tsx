@@ -5,6 +5,7 @@ import { ProductCard } from '@/components/shared/product-card';
 import JsonLd from '@/components/json-ld';
 import { generateCollectionSchema } from '@/lib/schemas/collection-schema';
 import { generateBreadcrumbSchema } from '@/lib/schemas/breadcrumb-schema';
+import { Shield, Truck } from 'lucide-react';
 
 export const revalidate = 1800;
 
@@ -57,16 +58,17 @@ export default async function ProductsPage() {
 
   if (products.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <div className="min-h-screen bg-white">
         <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
-        <section className="py-10 md:py-14">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center py-8">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 max-w-sm mx-auto">
-                <p className="text-gray-700 font-medium">No products available</p>
-                <p className="text-gray-600 text-sm mt-1">New products coming soon!</p>
-              </div>
-            </div>
+        <div className="bg-gray-50 border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Our Products</h1>
+          </div>
+        </div>
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">No products available</h2>
+            <p className="text-gray-500">New products coming soon!</p>
           </div>
         </section>
       </div>
@@ -77,19 +79,45 @@ export default async function ProductsPage() {
     <>
       <JsonLd data={generateCollectionSchema(products)} />
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-        <section className="py-10 md:py-14">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between mb-6">
-              <h1 className="text-2xl md:text-3xl font-bold text-brand-dark">Our Products</h1>
-              <div className="inline-flex items-center px-3 py-1.5 bg-brand-primary/10 text-brand-primary rounded-full">
-                <span className="text-sm font-medium">
-                  {products.length} Product{products.length !== 1 ? 's' : ''}
-                </span>
+      <div className="min-h-screen bg-white">
+        {/* Header */}
+        <div className="bg-gray-50 border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-xl md:text-2xl font-bold text-gray-900">
+                  Our Products
+                </h1>
+                <p className="text-sm text-gray-500 mt-1">
+                  Premium ice tubs and chillers for recovery and wellness
+                </p>
+              </div>
+              <div className="hidden sm:flex items-center gap-5 text-xs text-gray-500">
+                <div className="flex items-center gap-1.5">
+                  <Truck className="w-3.5 h-3.5" />
+                  <span>Free Delivery</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Shield className="w-3.5 h-3.5" />
+                  <span>1-Year Warranty</span>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+        {/* Products Grid */}
+        <section className="py-12 md:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Product Count */}
+            <div className="flex items-center justify-between mb-8">
+              <p className="text-gray-500 text-sm">
+                Showing <span className="font-semibold text-gray-900">{products.length}</span> products
+              </p>
+            </div>
+
+            {/* Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

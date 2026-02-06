@@ -65,20 +65,20 @@ const Footer = () => {
               Premium cold therapy products designed to enhance your recovery and wellness journey.
             </p>
 
-            <form onSubmit={handleNewsletterSubmit} className="flex gap-2 max-w-xs">
+            <form onSubmit={handleNewsletterSubmit} className="flex gap-2 max-w-sm" style={{ colorScheme: 'light' }}>
               <input
                 type="email"
                 placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={loading}
-                className="flex-1 px-3 py-2 rounded-lg bg-white border border-gray-200 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-brand-primary text-sm disabled:opacity-50"
+                className="flex-1 px-3.5 py-2.5 rounded-lg bg-white border border-gray-300 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors disabled:opacity-50"
                 required
               />
               <button
                 type="submit"
                 disabled={loading || !email.trim()}
-                className="bg-brand-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-primary/90 transition-colors disabled:opacity-50"
+                className="bg-brand-dark text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-brand-dark/90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? '...' : 'Subscribe'}
               </button>

@@ -2,6 +2,7 @@ export interface Product {
   id: string;
   name: string;
   description: string;
+  seo_description?: string;
   price: number;
   original_price?: number;
   preorder_price?: number;

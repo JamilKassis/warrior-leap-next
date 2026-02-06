@@ -112,98 +112,96 @@ export function TestimonialForm({ onSubmit }: TestimonialFormProps) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10">
-      <div className="text-center mb-5">
-        <h3 className="text-xl md:text-2xl font-bold text-brand-dark mb-1">Share Your Experience</h3>
-        <p className="text-gray-600 text-sm">Help others discover the benefits</p>
+    <div style={{ colorScheme: 'light' }}>
+      <div className="px-5 pt-5 pb-2 md:px-6 md:pt-6">
+        <h3 className="text-lg md:text-xl font-bold text-brand-dark">Share Your Experience</h3>
+        <p className="text-gray-500 text-sm mt-0.5">Help others discover the benefits</p>
       </div>
 
-      <div className="relative">
-        <div className="relative bg-white rounded-xl border border-stone-200 p-5 md:p-6 shadow-sm">
-          <div role="status" aria-live="polite" aria-atomic="true">
-            {submitSuccess && (
-              <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-lg mb-4 text-sm">
-                {submitMessage}
-              </div>
-            )}
-            {submitError && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm" role="alert">
-                {submitError}
-              </div>
-            )}
-          </div>
+      <div className="px-5 pb-5 md:px-6 md:pb-6">
+        <div role="status" aria-live="polite" aria-atomic="true">
+          {submitSuccess && (
+            <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-lg mb-4 text-sm">
+              {submitMessage}
+            </div>
+          )}
+          {submitError && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm" role="alert">
+              {submitError}
+            </div>
+          )}
+        </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="md:col-span-2">
-                <label htmlFor="name" className="block text-xs font-medium text-gray-700 mb-1.5">Your Name</label>
-                <input
-                  type="text" id="name" name="name" required value={formData.name} onChange={handleInputChange}
-                  className={`w-full px-3 py-2 rounded-lg border ${errors.name ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'} focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/50 transition-colors text-gray-900 placeholder-gray-400 text-sm`}
-                  placeholder="Enter your name" maxLength={50}
-                />
-                {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name}</p>}
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">Rating</label>
-                <div className={`flex items-center justify-center py-2 px-3 rounded-lg border ${errors.rating ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'}`}>
-                  {[1, 2, 3, 4, 5].map((rating) => (
-                    <button
-                      key={rating} type="button"
-                      onClick={() => { setFormData((prev) => ({ ...prev, rating })); if (errors.rating) setErrors((prev) => ({ ...prev, rating: undefined })); }}
-                      className={`p-0.5 transition-colors ${formData.rating >= rating ? 'text-yellow-500' : 'text-gray-300 hover:text-gray-400'}`}
-                    >
-                      <StarIcon className="w-5 h-5" />
-                    </button>
-                  ))}
-                </div>
-                {errors.rating && <p className="text-xs text-red-600 mt-1">{errors.rating}</p>}
-              </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="name" className="block text-xs font-medium text-gray-700 mb-1.5">Your Name *</label>
+              <input
+                type="text" id="name" name="name" required value={formData.name} onChange={handleInputChange}
+                className={`w-full px-3.5 py-2.5 rounded-lg border ${errors.name ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'} focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors text-sm text-gray-900 placeholder:text-gray-400`}
+                placeholder="Enter your name" maxLength={50}
+              />
+              {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name}</p>}
             </div>
 
             <div>
-              <label htmlFor="comment" className="block text-xs font-medium text-gray-700 mb-1.5">Your Experience</label>
-              <textarea
-                id="comment" name="comment" required rows={3} value={formData.comment} onChange={handleInputChange}
-                className={`w-full px-3 py-2 rounded-lg border ${errors.comment ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'} focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/50 transition-colors text-gray-900 placeholder-gray-400 text-sm resize-none`}
-                placeholder="Share your experience..." maxLength={500}
+              <label className="block text-xs font-medium text-gray-700 mb-1.5">Rating *</label>
+              <div className="flex items-center gap-1 py-2.5">
+                {[1, 2, 3, 4, 5].map((rating) => (
+                  <button
+                    key={rating} type="button"
+                    onClick={() => { setFormData((prev) => ({ ...prev, rating })); if (errors.rating) setErrors((prev) => ({ ...prev, rating: undefined })); }}
+                    className={`p-0.5 transition-colors ${formData.rating >= rating ? 'text-yellow-500' : 'text-gray-300 hover:text-yellow-400'}`}
+                  >
+                    <StarIcon className="w-6 h-6" />
+                  </button>
+                ))}
+              </div>
+              {errors.rating && <p className="text-xs text-red-600 mt-1">{errors.rating}</p>}
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="comment" className="block text-xs font-medium text-gray-700 mb-1.5">Your Experience *</label>
+            <textarea
+              id="comment" name="comment" required rows={3} value={formData.comment} onChange={handleInputChange}
+              className={`w-full px-3.5 py-2.5 rounded-lg border ${errors.comment ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'} focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors text-sm text-gray-900 placeholder:text-gray-400 resize-none`}
+              placeholder="Share your experience..." maxLength={500}
+            />
+            <div className="flex justify-between mt-1">
+              {errors.comment ? <p className="text-xs text-red-600">{errors.comment}</p> : <span />}
+              <span className="text-xs text-gray-400">{formData.comment.length}/500</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="email" className="block text-xs font-medium text-gray-700 mb-1.5">Email <span className="text-gray-400">(Optional)</span></label>
+              <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange}
+                className={`w-full px-3.5 py-2.5 rounded-lg border ${errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'} focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors text-sm text-gray-900 placeholder:text-gray-400`}
+                placeholder="your@email.com"
               />
-              <div className="flex justify-between mt-1">
-                {errors.comment ? <p className="text-xs text-red-600">{errors.comment}</p> : <span />}
-                <span className="text-xs text-gray-400">{formData.comment.length}/500</span>
-              </div>
+              {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
             </div>
+            <div>
+              <label htmlFor="phone" className="block text-xs font-medium text-gray-700 mb-1.5">Phone <span className="text-gray-400">(Optional)</span></label>
+              <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange}
+                className={`w-full px-3.5 py-2.5 rounded-lg border ${errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'} focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors text-sm text-gray-900 placeholder:text-gray-400`}
+                placeholder="+961..."
+              />
+              {errors.phone && <p className="text-xs text-red-600 mt-1">{errors.phone}</p>}
+            </div>
+          </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="email" className="block text-xs font-medium text-gray-700 mb-1.5">Email <span className="text-gray-400">(Optional)</span></label>
-                <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange}
-                  className={`w-full px-3 py-2 rounded-lg border ${errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'} focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/50 transition-colors text-gray-900 placeholder-gray-400 text-sm`}
-                  placeholder="your@email.com"
-                />
-                {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-xs font-medium text-gray-700 mb-1.5">Phone <span className="text-gray-400">(Optional)</span></label>
-                <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange}
-                  className={`w-full px-3 py-2 rounded-lg border ${errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-300 bg-white'} focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/50 transition-colors text-gray-900 placeholder-gray-400 text-sm`}
-                  placeholder="+961..."
-                />
-                {errors.phone && <p className="text-xs text-red-600 mt-1">{errors.phone}</p>}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-2">
-              <p className="text-xs text-gray-500">Review published after approval</p>
-              <button type="submit" disabled={isSubmitting}
-                className="px-5 py-2 bg-brand-primary hover:bg-brand-primary/80 text-white font-medium rounded-lg transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit Review'}
-              </button>
-            </div>
-          </form>
-        </div>
+          <div className="pt-3 border-t border-gray-100 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p className="text-xs text-gray-400 text-center sm:text-left">Review published after approval</p>
+            <button type="submit" disabled={isSubmitting}
+              className="w-full sm:w-auto px-6 py-2.5 bg-brand-primary hover:bg-brand-primary/90 text-white font-medium rounded-lg transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit Review'}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

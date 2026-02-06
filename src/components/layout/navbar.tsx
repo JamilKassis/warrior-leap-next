@@ -63,6 +63,7 @@ const Navbar: React.FC = () => {
     { name: 'Products', path: '/products' },
     { name: 'About', path: '/about' },
     { name: 'Blog', path: '/blog' },
+    { name: 'FAQ', path: '/faq' },
   ];
 
   const isCurrentPath = (path: string) => {
@@ -148,7 +149,7 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full relative z-10">
           <div className="flex items-center justify-between h-full overflow-hidden">
             {/* Logo */}
-            <div className="flex-shrink-0 min-w-[180px] opacity-100">
+            <div className="flex-shrink-0 min-w-[180px]">
               <button
                 onClick={handleLogoClick}
                 className="flex items-center gap-2 whitespace-nowrap"
@@ -158,7 +159,7 @@ const Navbar: React.FC = () => {
                   alt="Warrior Leap"
                   width={40}
                   height={40}
-                  className="opacity-100 mt-0"
+                  className="mt-0"
                   style={{
                     height: isScrolled ? '32px' : '40px',
                     width: 'auto',
@@ -169,7 +170,7 @@ const Navbar: React.FC = () => {
                   priority
                 />
                 <span
-                  className="text-white font-bold whitespace-nowrap opacity-100"
+                  className="text-white font-bold whitespace-nowrap"
                   style={{
                     fontSize: isScrolled ? '1.25rem' : '1.5rem',
                     transition: 'all 400ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -262,11 +263,11 @@ const Navbar: React.FC = () => {
               <span className="text-white font-bold text-lg">Warrior Leap</span>
             </div>
             <button
-              className="w-10 h-10 flex items-center justify-center text-white"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
               onClick={toggleMobileMenu}
               aria-label="Close menu"
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             </button>
           </div>
 

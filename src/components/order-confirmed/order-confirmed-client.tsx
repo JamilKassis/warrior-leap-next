@@ -3,17 +3,28 @@
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import {
-  Check,
-  Package,
-  Mail,
-  Phone,
-  MapPin,
-  CreditCard,
-  Clock,
-  ArrowLeft,
-  MessageCircle,
-} from 'lucide-react';
+import { Check, Phone, Package, MapPin, MessageCircle, Mail, ArrowRight } from 'lucide-react';
+
+const steps = [
+  {
+    icon: Phone,
+    color: 'bg-brand-primary/10 text-brand-primary',
+    title: 'Confirmation call',
+    desc: 'We\u2019ll call you within 24 hours to confirm details.',
+  },
+  {
+    icon: Package,
+    color: 'bg-brand-primary/10 text-brand-primary',
+    title: 'Preparing your order',
+    desc: 'Your order will be packed within 1\u20132 business days.',
+  },
+  {
+    icon: MapPin,
+    color: 'bg-brand-primary/10 text-brand-primary',
+    title: 'Free delivery',
+    desc: 'Delivered to your door in 3\u20137 days. Pay cash on arrival.',
+  },
+];
 
 export default function OrderConfirmedClient() {
   const router = useRouter();
@@ -31,157 +42,87 @@ export default function OrderConfirmedClient() {
   if (!orderNumber) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-primary rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
-        <div className="absolute top-40 right-10 w-72 h-72 bg-brand-light rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000" />
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-brand-dark rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000" />
-      </div>
-
-      <div className="relative z-10 py-8 pt-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-6">
-            <div className="flex items-center justify-center mb-3">
-              <div className="inline-flex items-center justify-center w-8 h-8 bg-green-100 rounded-full mr-3">
-                <Check className="w-5 h-5 text-green-600" />
-              </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-brand-dark">Order Confirmed!</h1>
+    <div className="min-h-screen bg-gray-50 pt-6 pb-12" style={{ colorScheme: 'light' }}>
+      <div className="max-w-lg mx-auto px-4 sm:px-6">
+        {/* Main card */}
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+          {/* Success banner */}
+          <div className="bg-gradient-to-br from-brand-dark to-brand-primary px-6 py-8 text-center">
+            <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full mb-4 ring-4 ring-white/10">
+              <Check className="w-7 h-7 text-white" strokeWidth={3} />
             </div>
-            <p className="text-sm text-brand-dark/70 max-w-xl mx-auto">
-              Thank you for your order. We&apos;ll start processing it right away and keep you updated.
-            </p>
+            <h1 className="text-xl md:text-2xl font-bold text-white mb-1">Order Confirmed</h1>
+            <p className="text-white/60 text-sm">Thank you for choosing Warrior Leap</p>
           </div>
 
-          {/* Order Number */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-brand-primary/20 p-6 mb-6">
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-primary/10 rounded-lg mb-4">
-                <Package className="w-6 h-6 text-brand-primary" />
-              </div>
-              <h2 className="text-lg font-bold text-brand-dark mb-3">Your Order Details</h2>
-              <div className="bg-gradient-to-r from-brand-primary/10 to-brand-light/20 rounded-lg p-4 mb-4">
-                <p className="text-xs font-medium text-brand-dark/70 mb-1">Order Number</p>
-                <p className="text-xl font-bold text-brand-primary font-mono tracking-wider">{orderNumber}</p>
-                <p className="text-xs text-brand-dark/60 mt-2">Please save this number for your records</p>
-              </div>
-            </div>
+          {/* Order number */}
+          <div className="px-6 py-5 border-b border-gray-100">
+            <p className="text-xs text-gray-500 mb-1">Order number</p>
+            <p className="text-lg font-bold text-brand-dark font-mono tracking-wider">{orderNumber}</p>
+            <p className="text-xs text-gray-400 mt-1">Save this for your records</p>
           </div>
 
-          {/* What Happens Next */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-brand-primary/20 p-6 mb-6">
-            <h3 className="text-lg font-bold text-brand-dark mb-4 text-center">What Happens Next?</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-3">
-                  <Mail className="w-6 h-6 text-blue-600" />
-                </div>
-                <h4 className="text-sm font-semibold text-brand-dark mb-2">1. We&apos;ll Contact You</h4>
-                <p className="text-xs text-brand-dark/70">
-                  Our team will call or email you within 24 hours to confirm your order details.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg mb-3">
-                  <Package className="w-6 h-6 text-purple-600" />
-                </div>
-                <h4 className="text-sm font-semibold text-brand-dark mb-2">2. Order Processing</h4>
-                <p className="text-xs text-brand-dark/70">
-                  We&apos;ll prepare your order for delivery. This typically takes 1-2 business days.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg mb-3">
-                  <MapPin className="w-6 h-6 text-green-600" />
-                </div>
-                <h4 className="text-sm font-semibold text-brand-dark mb-2">3. Fast Delivery</h4>
-                <p className="text-xs text-brand-dark/70">
-                  Delivered to your address within 3-7 business days. Pay cash on delivery.
-                </p>
-              </div>
+          {/* Timeline */}
+          <div className="px-6 py-5 border-b border-gray-100">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">What happens next</p>
+            <div className="space-y-0">
+              {steps.map((step, i) => {
+                const Icon = step.icon;
+                return (
+                  <div key={i} className="flex gap-3">
+                    {/* Vertical line + dot */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 h-8 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-4 h-4 text-brand-primary" />
+                      </div>
+                      {i < steps.length - 1 && (
+                        <div className="w-px h-full min-h-[24px] bg-gray-200 my-1" />
+                      )}
+                    </div>
+                    {/* Content */}
+                    <div className={i < steps.length - 1 ? 'pb-4' : ''}>
+                      <p className="text-sm font-medium text-gray-900 leading-snug">{step.title}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{step.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          {/* Payment */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-yellow-200 p-6 mb-6">
-            <div className="flex items-center justify-center mb-4">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-yellow-100 rounded-lg">
-                <CreditCard className="w-6 h-6 text-yellow-600" />
-              </div>
-            </div>
-            <h3 className="text-lg font-bold text-brand-dark mb-3 text-center">Payment Information</h3>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
-              <div className="flex items-center justify-center mb-2">
-                <Clock className="w-4 h-4 text-yellow-600 mr-2" />
-                <span className="font-semibold text-yellow-800 text-sm">Cash on Delivery</span>
-              </div>
-              <p className="text-yellow-700 mb-2 text-sm">
-                <strong>No payment required now!</strong>
-              </p>
-              <p className="text-xs text-yellow-600">
-                You&apos;ll pay the full amount when your order is delivered.
-              </p>
+          {/* Help */}
+          <div className="px-6 py-5">
+            <p className="text-xs text-gray-500 mb-3">Questions about your order?</p>
+            <div className="flex gap-2">
+              <a
+                href={`https://wa.me/96171457820?text=${encodeURIComponent(`Hi, I have a question about order ${orderNumber}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-brand-primary text-white rounded-lg hover:bg-brand-primary/90 transition-colors text-sm font-medium"
+              >
+                <MessageCircle className="w-4 h-4" />
+                WhatsApp
+              </a>
+              <a
+                href="mailto:support@warriorleap.com"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium"
+              >
+                <Mail className="w-4 h-4" />
+                Email
+              </a>
             </div>
           </div>
+        </div>
 
-          {/* Contact */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-brand-primary/20 p-6 mb-6">
-            <h3 className="text-lg font-bold text-brand-dark mb-4 text-center">Need Help?</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-10 h-10 bg-brand-primary/10 rounded-lg mb-3">
-                  <Phone className="w-5 h-5 text-brand-primary" />
-                </div>
-                <h4 className="text-sm font-semibold text-brand-dark mb-2">Call Us</h4>
-                <a
-                  href="tel:+961-70-123-456"
-                  className="inline-flex items-center px-3 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-primary/90 transition-colors text-sm"
-                >
-                  <Phone className="w-3 h-3 mr-2" />
-                  +961 70 123 456
-                </a>
-              </div>
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-10 h-10 bg-brand-primary/10 rounded-lg mb-3">
-                  <Mail className="w-5 h-5 text-brand-primary" />
-                </div>
-                <h4 className="text-sm font-semibold text-brand-dark mb-2">Email Us</h4>
-                <a
-                  href="mailto:support@warriorleap.com"
-                  className="inline-flex items-center px-3 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-primary/90 transition-colors text-sm"
-                >
-                  <Mail className="w-3 h-3 mr-2" />
-                  Contact Support
-                </a>
-              </div>
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-10 h-10 bg-brand-primary/10 rounded-lg mb-3">
-                  <MessageCircle className="w-5 h-5 text-brand-primary" />
-                </div>
-                <h4 className="text-sm font-semibold text-brand-dark mb-2">WhatsApp</h4>
-                <a
-                  href="https://wa.me/96170123456?text=Hi,%20I%20have%20a%20question%20about%20my%20order"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-3 py-2 bg-brand-primary text-white rounded-lg hover:bg-brand-primary/90 transition-colors text-sm"
-                >
-                  <MessageCircle className="w-3 h-3 mr-2" />
-                  Chat with us
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Back */}
-          <div className="text-center">
-            <Link
-              href="/"
-              className="inline-flex items-center text-brand-primary hover:text-brand-dark transition-colors text-sm"
-            >
-              <ArrowLeft className="w-4 h-4 mr-1" />
-              Home
-            </Link>
-          </div>
+        {/* Continue shopping */}
+        <div className="text-center mt-6">
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-1.5 text-sm text-brand-primary hover:text-brand-primary-dark transition-colors font-medium"
+          >
+            Continue Shopping
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </div>

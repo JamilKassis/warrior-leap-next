@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { faqData, FAQItem } from '@/data/faq-data';
 import JsonLd from '@/components/json-ld';
 import { generateFAQSchema } from '@/lib/schemas/faq-schema';
@@ -21,38 +22,35 @@ const FAQ: React.FC<FAQProps> = ({ className = '' }) => {
   return (
     <>
       <JsonLd data={generateFAQSchema(faqData)} />
-      <section id="faq" className={`relative py-16 md:py-24 bg-brand-dark ${className}`}>
+      <section id="faq" className={`relative py-10 md:py-16 lg:py-24 bg-white min-h-screen ${className}`}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 md:mb-12">
-            <div className="w-16 md:w-20 h-1 bg-white mb-4 mx-auto transform -skew-x-12" />
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Frequently Asked Questions</h2>
+          <div className="text-center mb-8 md:mb-10 lg:mb-12">
+            <div className="w-12 md:w-16 lg:w-20 h-1 bg-brand-primary mb-3 md:mb-4 mx-auto transform -skew-x-12" />
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-brand-dark">Frequently Asked Questions</h2>
+            <p className="text-gray-500 text-xs md:text-sm mt-2">Everything you need to know about our ice tubs and cold therapy</p>
           </div>
 
           <div className="space-y-3">
             {faqData.map((item: FAQItem, index: number) => (
               <div
                 key={index}
-                className={`bg-white/5 rounded-lg overflow-hidden border-l-4 ${
-                  openItems.includes(index) ? 'border-l-brand-primary bg-white/10' : 'border-l-transparent'
-                } transition-all duration-200`}
+                className={`rounded-xl overflow-hidden border transition-all duration-200 ${
+                  openItems.includes(index)
+                    ? 'border-brand-primary/30 bg-gray-50 shadow-sm'
+                    : 'border-gray-200 bg-white hover:border-gray-300'
+                }`}
               >
                 <button
-                  className="w-full text-left px-5 py-4 focus:outline-none flex justify-between items-center"
+                  className="w-full text-left px-4 py-3.5 md:px-5 md:py-4 focus:outline-none flex justify-between items-center group"
                   onClick={() => toggleItem(index)}
                   aria-expanded={openItems.includes(index)}
                 >
-                  <span className="font-medium text-sm md:text-base text-white">{item.question}</span>
-                  <svg
-                    className={`w-5 h-5 text-brand-primary flex-shrink-0 ml-3 transition-transform duration-200 ${
-                      openItems.includes(index) ? 'rotate-180' : ''
+                  <span className="font-medium text-sm md:text-base text-gray-900">{item.question}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-gray-400 group-hover:text-brand-primary flex-shrink-0 ml-3 transition-all duration-200 ${
+                      openItems.includes(index) ? 'rotate-180 text-brand-primary' : ''
                     }`}
-                    fill="none"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M19 9l-7 7-7-7" />
-                  </svg>
+                  />
                 </button>
 
                 <div
@@ -60,7 +58,7 @@ const FAQ: React.FC<FAQProps> = ({ className = '' }) => {
                     openItems.includes(index) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <p className="px-5 pb-4 text-white/70 text-sm leading-relaxed">{item.answer}</p>
+                  <p className="px-4 pb-3.5 md:px-5 md:pb-4 text-gray-600 text-xs md:text-sm leading-relaxed">{item.answer}</p>
                 </div>
               </div>
             ))}

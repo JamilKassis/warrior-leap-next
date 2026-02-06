@@ -3,7 +3,8 @@
     { "text": "Home", "path": "/" },
     { "text": "Our Products", "path": "/#products" },
     { "text": "Benefits", "path": "/#benefits" },
-    { "text": "About Us", "path": "/about" }
+    { "text": "About Us", "path": "/about" },
+    { "text": "FAQ", "path": "/faq" }
   ],
   "contact": {
     "email": "info@warriorleap.com",

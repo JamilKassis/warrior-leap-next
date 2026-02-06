@@ -42,7 +42,9 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       depositAmount: product.deposit_amount,
     };
 
-    addItem(cartItem);
+    for (let i = 0; i < quantity; i++) {
+      addItem(cartItem);
+    }
     setIsAdded(true);
     setTimeout(() => {
       setIsAdded(false);
@@ -50,39 +52,45 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   };
 
   const isOutOfStock = product.computed_status === 'out_of_stock';
+  const isPreorder = product.computed_status === 'preorder';
   const isInactive = product.computed_status === 'inactive';
-  const isDisabled = disabled || isOutOfStock || isInactive;
+  const isUnavailable = isOutOfStock || isPreorder || isInactive;
+  const isDisabled = disabled || isUnavailable;
 
   const variantClasses = {
-    primary: isAdded ? 'bg-green-500 text-white' : 'bg-brand-primary text-white hover:bg-brand-primary/90',
-    secondary: isAdded ? 'bg-green-500 text-white' : 'bg-brand-light text-brand-dark hover:bg-brand-light/90',
+    primary: isAdded
+      ? 'bg-emerald-500 text-white shadow-lg'
+      : isUnavailable
+        ? 'bg-gray-200 text-gray-500'
+        : 'bg-gray-100 text-gray-700 hover:bg-brand-dark hover:text-white hover:shadow-lg',
+    secondary: isAdded
+      ? 'bg-emerald-500 text-white'
+      : 'bg-brand-light text-brand-dark hover:bg-brand-light/80',
     outline: isAdded
-      ? 'bg-green-500 text-white border-2 border-green-500'
+      ? 'bg-emerald-500 text-white border-2 border-emerald-500'
       : 'border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white',
   };
 
   const sizeClasses = {
-    sm: 'px-3 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
+    sm: 'px-3 py-2 text-sm font-semibold',
+    md: 'px-6 py-3 text-base font-semibold',
+    lg: 'px-8 py-3.5 text-base font-bold',
   };
 
-  const buttonText = isOutOfStock
-    ? 'Out of Stock'
-    : isInactive
-      ? 'Unavailable'
-      : isAdded
-        ? 'Added to Cart'
-        : 'Add to Cart';
+  const buttonText = isAdded
+    ? 'Added to Cart'
+    : isUnavailable
+      ? 'Sold Out'
+      : 'Add to Cart';
 
   return (
     <button
       onClick={handleAddToCart}
       disabled={isDisabled}
-      className={`${variantClasses[variant]} ${sizeClasses[size]} font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg active:scale-95 ${isAdded ? 'transform scale-105 shadow-lg' : ''} ${className}`}
+      className={`group ${variantClasses[variant]} ${sizeClasses[size]} rounded-xl transition-all duration-200 ease-out flex items-center justify-center gap-2.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 ${isAdded ? 'scale-[1.02]' : ''} ${className}`}
       aria-label={`Add ${product.name} to cart`}
     >
-      {showIcon && (isAdded ? <Check className="w-5 h-5 animate-bounce" /> : <ShoppingCart className="w-5 h-5" />)}
+      {showIcon && (isAdded ? <Check className="w-5 h-5 animate-bounce" /> : <ShoppingCart className="w-5 h-5 transition-transform duration-200 group-hover:scale-110" />)}
       <span>{buttonText}</span>
     </button>
   );

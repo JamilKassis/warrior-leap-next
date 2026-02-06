@@ -58,9 +58,9 @@ export async function generateMetadata({
     };
   }
 
-  const metaDescription = product.description
-    ? product.description.substring(0, 160)
-    : `${product.name} - Premium cold therapy equipment. Professional ice tubs and chillers delivered across Lebanon.`;
+  const metaDescription = product.seo_description
+    || product.description?.substring(0, 155)
+    || `${product.name} - Premium cold therapy equipment. Professional ice tubs and chillers delivered across Lebanon.`;
 
   return {
     title: `${product.name} | Warrior Leap Lebanon`,

@@ -18,7 +18,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         Skip to main content
       </a>
 
-      <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full">
+      <div className="min-h-screen flex flex-col bg-white overflow-x-clip w-full">
         {/* Background Pattern Overlay - GPU-promoted to avoid scroll repaint */}
         <div
           className="fixed inset-0 bg-grid-pattern pointer-events-none opacity-20"

@@ -17,11 +17,16 @@ const Hero = () => {
 
   useEffect(() => {
     const calculateHeroHeight = () => {
-      setHeroHeight('calc(100vh)');
+      const vh = window.visualViewport?.height || window.innerHeight;
+      setHeroHeight(`${vh}px`);
     };
     calculateHeroHeight();
     window.addEventListener('resize', calculateHeroHeight);
-    return () => window.removeEventListener('resize', calculateHeroHeight);
+    window.visualViewport?.addEventListener('resize', calculateHeroHeight);
+    return () => {
+      window.removeEventListener('resize', calculateHeroHeight);
+      window.visualViewport?.removeEventListener('resize', calculateHeroHeight);
+    };
   }, []);
 
   useEffect(() => {
@@ -90,7 +95,7 @@ const Hero = () => {
       id="hero"
       ref={heroRef}
       className="relative w-full overflow-hidden"
-      style={{ height: heroHeight, minHeight: '100vh' }}
+      style={{ height: heroHeight }}
     >
       {isLoading && (
         <div className="absolute inset-0 z-40 flex items-center justify-center bg-brand-dark">
@@ -104,8 +109,8 @@ const Hero = () => {
       <MemoizedHeroBackground isLoaded={isLoaded} onImageChange={handleImageChange} />
 
       <div className="relative h-full flex flex-col">
-        <div className="container max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full flex flex-col flex-grow">
-          <div className="flex-grow flex flex-col justify-center pt-[80px] sm:pt-[90px] md:pt-[100px]">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full flex flex-col flex-grow">
+          <div className="flex-grow flex flex-col justify-center pt-[72px] sm:pt-[90px] md:pt-[100px]">
             <MemoizedHeroContent isLoaded={isLoaded} currentImageIndex={currentImageIndex} />
           </div>
         </div>

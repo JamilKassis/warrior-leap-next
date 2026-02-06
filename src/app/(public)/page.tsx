@@ -4,7 +4,8 @@ import ProductsSection from '@/components/home/products/products-section';
 import Benefits from '@/components/home/benefits/benefits';
 import { Testimonials } from '@/components/testimonials/testimonials';
 import { TrustBadges } from '@/components/shared/trust-badges';
-import FAQ from '@/components/faq/faq';
+import { HomeFAQ } from '@/components/home/faq/home-faq';
+import { FinalCTA } from '@/components/home/cta/final-cta';
 
 export const metadata: Metadata = {
   title: 'Ice Bath Lebanon | Ice Tub & Cold Plunge - Warrior Leap',
@@ -31,7 +32,8 @@ export default function HomePage() {
         <ProductsSection />
         <Benefits />
         <Testimonials />
-        <FAQ />
+        <HomeFAQ />
+        <FinalCTA />
       </div>
     </div>
   );
