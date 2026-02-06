@@ -81,17 +81,18 @@ export default function ProductImage({ image, name, productImages = [] }: Produc
 
         {/* Dot indicators */}
         {hasMultiple && (
-          <div className="flex justify-center gap-1.5 mt-3">
+          <div className="flex justify-center items-center gap-1 mt-2">
             {allImages.map((_, index) => (
-              <button
+              <span
                 key={index}
                 onClick={() => scrollToIndex(index)}
-                className={`rounded-full transition-all duration-200 ${
-                  index === activeIndex
-                    ? 'w-4 h-1.5 bg-brand-primary'
-                    : 'w-1.5 h-1.5 bg-gray-300'
-                }`}
+                role="button"
                 aria-label={`View image ${index + 1}`}
+                className={`block rounded-full transition-all duration-200 cursor-pointer ${
+                  index === activeIndex
+                    ? 'w-3 h-1 bg-brand-primary'
+                    : 'w-1 h-1 bg-gray-300'
+                }`}
               />
             ))}
           </div>
