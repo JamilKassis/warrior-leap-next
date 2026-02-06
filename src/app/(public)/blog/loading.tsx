@@ -2,17 +2,16 @@ export default function BlogLoading() {
   return (
     <div className="min-h-screen bg-white animate-pulse">
       {/* Header skeleton */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="h-10 w-48 bg-gray-200 rounded mx-auto" />
-          </div>
-          <div className="max-w-2xl mx-auto flex flex-col sm:flex-row gap-3">
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="h-7 w-32 bg-gray-200 rounded" />
+          <div className="h-4 w-64 bg-gray-200 rounded mt-2" />
+          <div className="mt-4 flex flex-col sm:flex-row gap-3 max-w-lg">
             <div className="flex-1 h-10 bg-gray-200 rounded-lg" />
             <div className="w-32 h-10 bg-gray-200 rounded-lg" />
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Featured post skeleton */}
       <section className="py-8 md:py-12">

@@ -59,7 +59,7 @@ export default function StickyMobileCart({ product, showWhenMainHidden = false }
           onClick={handleAddToCart}
           disabled={isAdded}
           className={`flex-1 flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-base transition-all duration-300 ${
-            isAdded ? 'bg-green-500 text-white' : 'bg-brand-primary text-white active:scale-95'
+            isAdded ? 'bg-emerald-500 text-white' : 'bg-brand-dark text-white active:scale-95'
           }`}
         >
           {isAdded ? (

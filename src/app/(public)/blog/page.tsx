@@ -7,13 +7,13 @@ import BlogListingClient from '@/components/blog/blog-listing-client';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Our Blog | Warrior Leap - Cold Therapy Insights',
+  title: 'Cold Therapy Blog & Recovery Guides',
   description:
-    'Expert tips and insights on cold therapy, ice baths, and recovery techniques for athletes and wellness enthusiasts in Lebanon.',
+    'Guides, tips, and research on cold therapy, ice baths, and recovery. Written for anyone getting into cold plunging.',
   openGraph: {
-    title: 'Our Blog | Warrior Leap - Cold Therapy Insights',
+    title: 'Cold Therapy Blog & Recovery Guides | Warrior Leap',
     description:
-      'Expert tips and insights on cold therapy, ice baths, and recovery techniques for athletes and wellness enthusiasts in Lebanon.',
+      'Guides, tips, and research on cold therapy, ice baths, and recovery.',
     type: 'website',
     url: 'https://warriorleap.com/blog',
   },
@@ -30,9 +30,9 @@ export default async function BlogPage() {
   const blogListSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Warrior Leap Blog - Cold Therapy Insights',
+    name: 'Warrior Leap Blog',
     description:
-      'Expert tips and insights on cold therapy, ice baths, and recovery techniques for athletes and wellness enthusiasts in Lebanon.',
+      'Guides, tips, and research on cold therapy, ice baths, and recovery.',
     url: 'https://warriorleap.com/blog',
     mainEntity: {
       '@type': 'ItemList',

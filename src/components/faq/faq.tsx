@@ -22,13 +22,18 @@ const FAQ: React.FC<FAQProps> = ({ className = '' }) => {
   return (
     <>
       <JsonLd data={generateFAQSchema(faqData)} />
-      <section id="faq" className={`relative py-10 md:py-16 lg:py-24 bg-white min-h-screen ${className}`}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-10 lg:mb-12">
-            <div className="w-12 md:w-16 lg:w-20 h-1 bg-brand-primary mb-3 md:mb-4 mx-auto transform -skew-x-12" />
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-brand-dark">Frequently Asked Questions</h2>
-            <p className="text-gray-500 text-xs md:text-sm mt-2">Everything you need to know about our ice tubs and cold therapy</p>
+      <div className={`min-h-screen bg-white ${className}`}>
+        {/* Header */}
+        <div className="bg-gray-50 border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Frequently Asked Questions</h1>
+            <p className="text-sm text-gray-500 mt-1">Everything you need to know about our ice tubs and cold therapy</p>
           </div>
+        </div>
+
+      <section id="faq" className="py-10 md:py-14 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
 
           <div className="space-y-3">
             {faqData.map((item: FAQItem, index: number) => (
@@ -63,8 +68,10 @@ const FAQ: React.FC<FAQProps> = ({ className = '' }) => {
               </div>
             ))}
           </div>
+          </div>
         </div>
       </section>
+      </div>
     </>
   );
 };

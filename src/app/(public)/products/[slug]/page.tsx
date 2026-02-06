@@ -44,6 +44,14 @@ export async function generateStaticParams() {
   }));
 }
 
+function getProductCategory(name: string): string {
+  const lower = name.toLowerCase();
+  if (lower.includes('system')) return 'Complete Ice Bath System';
+  if (lower.includes('chiller')) return 'Ice Bath Water Chiller';
+  if (lower.includes('tub')) return 'Portable Ice Bath Tub';
+  return 'Cold Plunge Equipment';
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -54,19 +62,22 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: 'Product Not Found | Warrior Leap',
+      title: 'Product Not Found',
     };
   }
 
+  const category = getProductCategory(product.name);
+  const seoTitle = `${product.name} - ${category}`;
+
   const metaDescription = product.seo_description
     || product.description?.substring(0, 155)
-    || `${product.name} - Premium cold therapy equipment. Professional ice tubs and chillers delivered across Lebanon.`;
+    || `${product.name} by Warrior Leap. Cold therapy equipment with free delivery across Lebanon.`;
 
   return {
-    title: `${product.name} | Warrior Leap Lebanon`,
+    title: seoTitle,
     description: metaDescription,
     openGraph: {
-      title: `${product.name} | Warrior Leap Lebanon`,
+      title: `${seoTitle} | Warrior Leap`,
       description: metaDescription,
       type: 'website',
       url: `https://warriorleap.com/products/${slug}`,

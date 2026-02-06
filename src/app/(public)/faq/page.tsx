@@ -4,13 +4,13 @@ import JsonLd from '@/components/json-ld';
 import { generateBreadcrumbSchema } from '@/lib/schemas/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: 'FAQ | Warrior Leap - Ice Bath & Cold Plunge Questions',
+  title: 'Ice Bath & Cold Plunge FAQ',
   description:
-    'Frequently asked questions about ice baths, cold plunge therapy, maintenance, warranty, and delivery in Lebanon. Get answers from Warrior Leap.',
+    'Common questions about our ice baths, chillers, delivery, warranty, and cold therapy in general. If you need help, we are here.',
   openGraph: {
-    title: 'FAQ | Warrior Leap - Ice Bath & Cold Plunge Questions',
+    title: 'Ice Bath & Cold Plunge FAQ | Warrior Leap',
     description:
-      'Frequently asked questions about ice baths, cold plunge therapy, maintenance, warranty, and delivery in Lebanon.',
+      'Common questions about our ice baths, chillers, delivery, warranty, and cold therapy.',
     type: 'website',
     url: 'https://warriorleap.com/faq',
   },

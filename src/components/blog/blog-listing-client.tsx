@@ -41,13 +41,12 @@ export default function BlogListingClient({ posts, allTags }: BlogListingClientP
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-brand-dark">Our Blog</h1>
-          </div>
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900">Our Blog</h1>
+          <p className="text-sm text-gray-500 mt-1">Tips and insights on cold therapy and recovery</p>
 
-          <div className="max-w-2xl mx-auto flex flex-col sm:flex-row gap-3">
+          <div className="mt-4 flex flex-col sm:flex-row gap-3 max-w-lg" style={{ colorScheme: 'light' }}>
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
               <input
@@ -55,14 +54,14 @@ export default function BlogListingClient({ posts, allTags }: BlogListingClientP
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-brand-primary bg-white"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary bg-white transition-colors"
               />
             </div>
             {allTags.length > 0 && (
               <select
                 value={selectedTag}
                 onChange={(e) => setSelectedTag(e.target.value)}
-                className="px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 focus:outline-none focus:border-brand-primary bg-white"
+                className="px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary bg-white transition-colors"
               >
                 <option value="">All Topics</option>
                 {allTags.map((tag) => (
@@ -74,7 +73,7 @@ export default function BlogListingClient({ posts, allTags }: BlogListingClientP
             )}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Featured Post */}
       {featuredPost && !searchTerm && !selectedTag && (

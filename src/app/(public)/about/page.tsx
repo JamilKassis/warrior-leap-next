@@ -6,13 +6,13 @@ import JsonLd from '@/components/json-ld';
 import { generateBreadcrumbSchema } from '@/lib/schemas/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: 'About Warrior Leap | Cold Therapy Experts in Lebanon',
+  title: 'About Us | Cold Therapy Equipment in Lebanon',
   description:
-    "Learn about Warrior Leap - Lebanon's premier cold therapy and ice tub provider. Our mission, team, and commitment to wellness.",
+    'Warrior Leap brings ice baths, chillers, and cold plunge equipment to Lebanon. Learn about our story, our products, and why we do what we do.',
   openGraph: {
-    title: 'About Warrior Leap | Cold Therapy Experts in Lebanon',
+    title: 'About Us | Cold Therapy Equipment in Lebanon | Warrior Leap',
     description:
-      "Learn about Warrior Leap - Lebanon's premier cold therapy and ice tub provider. Our mission, team, and commitment to wellness.",
+      'Warrior Leap brings ice baths, chillers, and cold plunge equipment to Lebanon. Learn about our story and our products.',
     type: 'website',
     url: 'https://warriorleap.com/about',
   },

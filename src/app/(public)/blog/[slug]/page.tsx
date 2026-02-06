@@ -28,10 +28,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} | Warrior Leap Blog`,
+    title: post.title,
     description: post.excerpt,
     openGraph: {
-      title: `${post.title} | Warrior Leap Blog`,
+      title: `${post.title} | Warrior Leap`,
       description: post.excerpt,
       type: 'article',
       url: `https://warriorleap.com/blog/${post.slug}`,
@@ -139,7 +139,7 @@ export default async function BlogPostPage({
 
         {/* Back Button */}
         <div className="border-b border-gray-100">
-          <div className="max-w-3xl mx-auto px-4 py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <Link
               href="/blog"
               className="text-gray-600 hover:text-brand-primary text-sm font-medium inline-flex items-center gap-1"
@@ -151,7 +151,8 @@ export default async function BlogPostPage({
         </div>
 
         {/* Article */}
-        <article className="max-w-3xl mx-auto px-4 py-8 md:py-12">
+        <article className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+          <div className="max-w-3xl">
           <header className="mb-8">
             {post.tags[0] && (
               <span className="text-xs bg-brand-primary/10 text-brand-primary px-2 py-1 rounded mb-4 inline-block">
@@ -211,6 +212,7 @@ export default async function BlogPostPage({
               </div>
             </div>
           )}
+          </div>
         </article>
       </div>
     </>
