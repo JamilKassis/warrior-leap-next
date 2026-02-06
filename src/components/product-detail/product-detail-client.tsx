@@ -97,7 +97,7 @@ export default function ProductDetailClient({ product, productImages }: ProductD
           {/* Add to Cart with Quantity */}
           <div ref={addToCartRef} className="mb-4 flex items-stretch gap-2 md:gap-3">
             {/* Quantity selector - hidden when sold out */}
-            {!(product.computed_status === 'out_of_stock' || product.computed_status === 'preorder' || product.computed_status === 'inactive' || (product.available_quantity !== undefined && product.available_quantity <= 0)) && (
+            {!(product.computed_status === 'out_of_stock' || product.computed_status === 'inactive' || (product.available_quantity !== undefined && product.available_quantity <= 0)) && (
               <div className="flex items-center bg-gray-50 border border-gray-200 rounded-xl overflow-hidden">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -134,7 +134,7 @@ export default function ProductDetailClient({ product, productImages }: ProductD
             </div>
             <span className="text-gray-300">·</span>
             <div className="flex items-center gap-1.5">
-              {product.computed_status === 'out_of_stock' || product.computed_status === 'preorder' || (product.available_quantity !== undefined && product.available_quantity <= 0) ? (
+              {product.computed_status === 'out_of_stock' || (product.available_quantity !== undefined && product.available_quantity <= 0) ? (
                 <>
                   <span className="w-2 h-2 rounded-full bg-red-400" />
                   <span>Out of stock</span>
