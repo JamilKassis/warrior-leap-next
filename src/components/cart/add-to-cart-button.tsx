@@ -52,9 +52,8 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   };
 
   const isOutOfStock = product.computed_status === 'out_of_stock';
-  const isPreorder = product.computed_status === 'preorder';
   const isInactive = product.computed_status === 'inactive';
-  const isUnavailable = isOutOfStock || isPreorder || isInactive;
+  const isUnavailable = isOutOfStock || isInactive;
   const isDisabled = disabled || isUnavailable;
 
   const variantClasses = {
