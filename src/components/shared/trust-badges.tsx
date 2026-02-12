@@ -43,7 +43,7 @@ export function TrustBadges() {
               >
                 <Icon className="w-4 h-4 md:w-5 md:h-5 text-brand-primary mb-1" />
                 <p className="text-brand-dark font-semibold text-[10px] sm:text-xs md:text-sm leading-tight">{indicator.title}</p>
-                <p className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs leading-tight mt-0.5 hidden sm:block">{indicator.subtitle}</p>
+                <p className="text-gray-400 text-[9px] sm:text-[10px] md:text-xs leading-tight mt-0.5">{indicator.subtitle}</p>
               </div>
             );
           })}
