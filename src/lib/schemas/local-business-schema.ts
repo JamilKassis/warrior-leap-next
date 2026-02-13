@@ -3,7 +3,7 @@ export function generateLocalBusinessSchema() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Warrior Leap',
-    description: 'Ice baths, chillers, and cold plunge systems delivered across Lebanon. Free delivery and installation.',
+    description: 'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems, chillers, and recovery equipment. Free delivery and installation across Lebanon.',
     url: 'https://warriorleap.com',
     logo: 'https://warriorleap.com/assets/images/logo.png',
     image: 'https://warriorleap.com/assets/images/logo.png',

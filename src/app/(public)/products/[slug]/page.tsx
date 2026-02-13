@@ -71,7 +71,7 @@ export async function generateMetadata({
 
   const metaDescription = product.seo_description
     || product.description?.substring(0, 155)
-    || `${product.name} by Warrior Leap. Cold therapy equipment with free delivery across Lebanon.`;
+    || `Buy ${product.name} in Lebanon. Premium ${category.toLowerCase()} with free delivery and installation across Lebanon.`;
 
   return {
     title: seoTitle,

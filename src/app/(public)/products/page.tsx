@@ -10,13 +10,13 @@ import { Shield, Truck } from 'lucide-react';
 export const revalidate = 1800;
 
 export const metadata: Metadata = {
-  title: 'Cold Plunge Tubs & Chillers in Lebanon',
+  title: 'Ice Tubs & Cold Plunge Products Lebanon',
   description:
-    'Browse our ice bath tubs, water chillers, and complete cold plunge systems. 1-year warranty on all products. Free delivery across Lebanon.',
+    'Buy ice tubs, water chillers, and cold plunge systems in Lebanon. 1-year warranty on all products. Free delivery across Lebanon. Best prices guaranteed.',
   openGraph: {
-    title: 'Cold Plunge Tubs & Chillers in Lebanon | Warrior Leap',
+    title: 'Ice Tubs & Cold Plunge Products Lebanon | Warrior Leap',
     description:
-      'Ice bath tubs, water chillers, and complete cold plunge systems. 1-year warranty. Free delivery across Lebanon.',
+      'Ice tubs, water chillers, and cold plunge systems in Lebanon. 1-year warranty. Free delivery across Lebanon.',
     type: 'website',
     url: 'https://warriorleap.com/products',
   },

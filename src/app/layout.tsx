@@ -6,24 +6,24 @@ import { generateLocalBusinessSchema, generateOrganizationSchema } from '@/lib/s
 export const metadata: Metadata = {
   metadataBase: new URL('https://warriorleap.com'),
   title: {
-    default: 'Ice Baths & Cold Plunge Equipment in Lebanon | Warrior Leap',
+    default: 'Ice Bath Lebanon | Cold Plunge & Ice Tub | Warrior Leap',
     template: '%s | Warrior Leap',
   },
-  description: 'Ice baths, chillers, and cold plunge systems delivered across Lebanon. Everything you need for cold therapy recovery. Free delivery and installation.',
-  keywords: ['ice bath', 'cold therapy', 'cold plunge', 'Lebanon', 'recovery', 'ice tub', 'chiller'],
+  description: 'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems, chillers, and recovery equipment. Best ice bath Lebanon prices. Free delivery and installation.',
+  keywords: ['ice bath', 'ice bath lebanon', 'ice tub', 'cold therapy', 'cold plunge', 'Lebanon', 'recovery', 'chiller', 'buy ice bath'],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://warriorleap.com',
     siteName: 'Warrior Leap',
-    title: 'Ice Baths & Cold Plunge Equipment in Lebanon | Warrior Leap',
-    description: 'Ice baths, chillers, and cold plunge systems delivered across Lebanon. Free delivery and installation.',
+    title: 'Ice Bath Lebanon | Cold Plunge & Ice Tub | Warrior Leap',
+    description: 'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems and chillers. Free delivery and installation.',
     images: [{ url: '/assets/images/logo.png', width: 800, height: 600, alt: 'Warrior Leap Logo' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ice Baths & Cold Plunge Equipment in Lebanon | Warrior Leap',
-    description: 'Ice baths, chillers, and cold plunge systems delivered across Lebanon.',
+    title: 'Ice Bath Lebanon | Cold Plunge & Ice Tub | Warrior Leap',
+    description: 'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems and chillers. Free delivery.',
     images: ['/assets/images/logo.png'],
   },
   icons: {

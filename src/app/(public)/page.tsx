@@ -8,13 +8,13 @@ import { HomeFAQ } from '@/components/home/faq/home-faq';
 import { FinalCTA } from '@/components/home/cta/final-cta';
 
 export const metadata: Metadata = {
-  title: 'Ice Baths & Cold Plunge Systems in Lebanon',
+  title: 'Ice Bath Lebanon | Ice Tub & Cold Plunge Systems',
   description:
-    'Ice bath tubs, chillers, and complete cold plunge systems. Free delivery and installation anywhere in Lebanon. Start your cold therapy recovery today.',
+    'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems and chillers for recovery and wellness. Best ice bath Lebanon prices. Free delivery and installation across Lebanon.',
   openGraph: {
-    title: 'Ice Baths & Cold Plunge Systems in Lebanon | Warrior Leap',
+    title: 'Ice Bath Lebanon | Ice Tub & Cold Plunge Systems | Warrior Leap',
     description:
-      'Ice bath tubs, chillers, and complete cold plunge systems. Free delivery and installation anywhere in Lebanon.',
+      'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems and chillers. Free delivery and installation across Lebanon.',
     type: 'website',
     url: 'https://warriorleap.com/',
   },
