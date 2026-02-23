@@ -6,13 +6,14 @@ import JsonLd from '@/components/json-ld';
 import { generateBreadcrumbSchema } from '@/lib/schemas/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: 'About Us | Cold Therapy Equipment in Lebanon',
+  title: 'About Warrior Leap | Ice Bath & Cold Plunge Lebanon',
   description:
-    'Warrior Leap brings ice baths, chillers, and cold plunge equipment to Lebanon. Learn about our story, our products, and why we do what we do.',
+    'Warrior Leap is Lebanon\'s trusted provider of ice baths, water chillers, and cold plunge equipment. Learn about our story, our ice bath products, and our mission to bring cold therapy to Lebanon.',
+  keywords: ['ice bath lebanon', 'cold plunge lebanon', 'warrior leap', 'cold therapy lebanon', 'ice tub lebanon'],
   openGraph: {
-    title: 'About Us | Cold Therapy Equipment in Lebanon | Warrior Leap',
+    title: 'About Warrior Leap | Ice Bath & Cold Plunge Lebanon',
     description:
-      'Warrior Leap brings ice baths, chillers, and cold plunge equipment to Lebanon. Learn about our story and our products.',
+      'Lebanon\'s trusted provider of ice baths, water chillers, and cold plunge equipment. Our story and mission.',
     type: 'website',
     url: 'https://warriorleap.com/about',
   },
@@ -63,7 +64,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <h1 className="text-xl md:text-2xl font-bold text-gray-900">{content.title}</h1>
             <p className="text-sm text-gray-500 mt-1">
-              Our story, mission, and what drives us
+              Lebanon&apos;s trusted source for ice baths, water chillers, and cold plunge systems
             </p>
           </div>
         </div>

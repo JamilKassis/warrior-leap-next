@@ -7,13 +7,21 @@ import BlogListingClient from '@/components/blog/blog-listing-client';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Cold Therapy Blog & Recovery Guides',
+  title: 'Ice Bath & Cold Therapy Blog | Recovery Guides & Tips',
   description:
-    'Guides, tips, and research on cold therapy, ice baths, and recovery. Written for anyone getting into cold plunging.',
+    'Expert guides on ice baths, cold plunge benefits, water chiller tips, and cold therapy recovery. Learn everything about ice bath temperature, duration, and wellness from Warrior Leap.',
+  keywords: [
+    'ice bath guide',
+    'cold plunge benefits',
+    'cold therapy blog',
+    'ice bath tips',
+    'ice bath recovery',
+    'cold water therapy',
+  ],
   openGraph: {
-    title: 'Cold Therapy Blog & Recovery Guides | Warrior Leap',
+    title: 'Ice Bath & Cold Therapy Blog | Warrior Leap',
     description:
-      'Guides, tips, and research on cold therapy, ice baths, and recovery.',
+      'Expert guides on ice baths, cold plunge benefits, and cold therapy recovery tips.',
     type: 'website',
     url: 'https://warriorleap.com/blog',
   },

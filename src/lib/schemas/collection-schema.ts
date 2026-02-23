@@ -4,8 +4,8 @@ export function generateCollectionSchema(products: ProductWithInventory[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Warrior Leap Products - Ice Baths & Cold Therapy Equipment',
-    description: 'Browse our collection of premium ice baths, cold plunge tubs, and cold therapy equipment in Lebanon.',
+    name: 'Buy Ice Bath & Cold Plunge Equipment in Lebanon - Warrior Leap',
+    description: 'Shop ice baths, ice tubs, water chillers, and cold plunge systems in Lebanon. Free delivery and installation. Starting at $600.',
     url: 'https://warriorleap.com/products',
     mainEntity: {
       '@type': 'ItemList',

@@ -17,6 +17,11 @@ export function generateProductSchema(product: ProductWithInventory) {
       '@type': 'Brand',
       name: 'Warrior Leap',
     },
+    category: 'Ice Bath & Cold Plunge Equipment',
+    countryOfOrigin: {
+      '@type': 'Country',
+      name: 'Lebanon',
+    },
     offers: {
       '@type': 'Offer',
       price: product.price,

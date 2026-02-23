@@ -10,13 +10,23 @@ import { Shield, Truck } from 'lucide-react';
 export const revalidate = 1800;
 
 export const metadata: Metadata = {
-  title: 'Ice Tubs & Cold Plunge Products Lebanon',
+  title: 'Buy Ice Bath & Cold Plunge in Lebanon | Ice Tubs & Chillers',
   description:
-    'Buy ice tubs, water chillers, and cold plunge systems in Lebanon. 1-year warranty on all products. Free delivery across Lebanon. Best prices guaranteed.',
+    'Shop ice baths, ice tubs, water chillers, and cold plunge systems in Lebanon. Starting at $600. 1-year warranty, free delivery and installation across Lebanon. Best ice bath prices guaranteed.',
+  keywords: [
+    'buy ice bath lebanon',
+    'ice tub lebanon',
+    'water chiller lebanon',
+    'cold plunge lebanon',
+    'ice bath price lebanon',
+    'portable ice bath',
+    'ice bath tub',
+    'chiller',
+  ],
   openGraph: {
-    title: 'Ice Tubs & Cold Plunge Products Lebanon | Warrior Leap',
+    title: 'Buy Ice Bath & Cold Plunge in Lebanon | Warrior Leap',
     description:
-      'Ice tubs, water chillers, and cold plunge systems in Lebanon. 1-year warranty. Free delivery across Lebanon.',
+      'Shop ice baths, ice tubs, water chillers, and cold plunge systems in Lebanon. Free delivery across Lebanon.',
     type: 'website',
     url: 'https://warriorleap.com/products',
   },
@@ -62,7 +72,7 @@ export default async function ProductsPage() {
         <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
         <div className="bg-gray-50 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Our Products</h1>
+            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Ice Bath & Cold Plunge Products</h1>
           </div>
         </div>
         <section className="py-16">
@@ -86,10 +96,10 @@ export default async function ProductsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-xl md:text-2xl font-bold text-gray-900">
-                  Our Products
+                  Ice Bath & Cold Plunge Products
                 </h1>
                 <p className="text-sm text-gray-500 mt-1">
-                  Premium ice tubs and chillers for recovery and wellness
+                  Premium ice tubs, water chillers, and cold plunge systems in Lebanon
                 </p>
               </div>
               <div className="hidden sm:flex items-center gap-5 text-xs text-gray-500">
@@ -121,6 +131,33 @@ export default async function ProductsPage() {
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SEO Content */}
+        <section className="py-10 md:py-14 bg-gray-50 border-t border-gray-200">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4">
+              Buy Ice Bath & Cold Plunge Equipment in Lebanon
+            </h2>
+            <div className="space-y-3 text-gray-600 text-sm leading-relaxed">
+              <p>
+                Warrior Leap offers a complete range of <strong>ice bath</strong> and <strong>cold plunge</strong> products
+                in Lebanon. From portable <strong>ice tubs</strong> perfect for beginners to professional-grade <strong>water
+                chillers</strong> that keep your water at the ideal temperature — we have everything you need to start or
+                upgrade your cold therapy routine.
+              </p>
+              <p>
+                All our products include <strong>free delivery and professional installation</strong> anywhere in Lebanon,
+                including Beirut, Tripoli, Sidon, Jounieh, and beyond. Every ice bath and chiller comes with a <strong>1-year
+                warranty</strong> and dedicated local support from our Lebanon-based team.
+              </p>
+              <p>
+                Whether you call it an ice bath, cold plunge, ice tub, or cold water therapy — Warrior Leap has the right
+                equipment at the best prices in Lebanon. Browse our collection above and contact us on WhatsApp for personalized
+                recommendations.
+              </p>
             </div>
           </div>
         </section>

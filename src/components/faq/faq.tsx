@@ -26,8 +26,8 @@ const FAQ: React.FC<FAQProps> = ({ className = '' }) => {
         {/* Header */}
         <div className="bg-gray-50 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Frequently Asked Questions</h1>
-            <p className="text-sm text-gray-500 mt-1">Everything you need to know about our ice tubs and cold therapy</p>
+            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Ice Bath & Cold Plunge FAQ</h1>
+            <p className="text-sm text-gray-500 mt-1">Everything you need to know about ice baths, water chillers, and cold therapy in Lebanon</p>
           </div>
         </div>
 

@@ -67,21 +67,28 @@ export async function generateMetadata({
   }
 
   const category = getProductCategory(product.name);
-  const seoTitle = `${product.name} - ${category}`;
+  const seoTitle = `${product.name} - ${category} | Buy in Lebanon`;
 
   const metaDescription = product.seo_description
     || product.description?.substring(0, 155)
-    || `Buy ${product.name} in Lebanon. Premium ${category.toLowerCase()} with free delivery and installation across Lebanon.`;
+    || `Buy ${product.name} in Lebanon. Premium ${category.toLowerCase()} with free delivery and installation across Lebanon. Best price guaranteed.`;
 
   return {
     title: seoTitle,
     description: metaDescription,
+    keywords: [
+      product.name.toLowerCase(),
+      category.toLowerCase(),
+      'ice bath lebanon',
+      'buy ice bath',
+      'cold plunge lebanon',
+    ],
     openGraph: {
       title: `${seoTitle} | Warrior Leap`,
       description: metaDescription,
       type: 'website',
       url: `https://warriorleap.com/products/${slug}`,
-      images: product.image_url ? [{ url: product.image_url }] : undefined,
+      images: product.image_url ? [{ url: product.image_url, alt: `${product.name} - ${category} in Lebanon` }] : undefined,
     },
     alternates: {
       canonical: `https://warriorleap.com/products/${slug}`,

@@ -4,13 +4,22 @@ import JsonLd from '@/components/json-ld';
 import { generateBreadcrumbSchema } from '@/lib/schemas/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: 'Ice Bath & Cold Plunge FAQ',
+  title: 'Ice Bath FAQ Lebanon | Cold Plunge & Chiller Questions',
   description:
-    'Common questions about our ice baths, chillers, delivery, warranty, and cold therapy in general. If you need help, we are here.',
+    'Frequently asked questions about ice baths in Lebanon. Learn about ice bath prices, delivery, water chillers, cold plunge benefits, maintenance, and warranty. Answers from Warrior Leap.',
+  keywords: [
+    'ice bath faq',
+    'ice bath questions',
+    'ice bath lebanon',
+    'cold plunge faq',
+    'water chiller questions',
+    'ice bath price lebanon',
+    'ice bath delivery lebanon',
+  ],
   openGraph: {
-    title: 'Ice Bath & Cold Plunge FAQ | Warrior Leap',
+    title: 'Ice Bath FAQ Lebanon | Warrior Leap',
     description:
-      'Common questions about our ice baths, chillers, delivery, warranty, and cold therapy.',
+      'Frequently asked questions about ice baths, water chillers, and cold plunge systems in Lebanon.',
     type: 'website',
     url: 'https://warriorleap.com/faq',
   },

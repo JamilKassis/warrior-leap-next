@@ -13,10 +13,10 @@ export function FinalCTA() {
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="w-12 md:w-16 lg:w-20 h-1 bg-brand-primary mb-4 md:mb-5 mx-auto transform -skew-x-12" />
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4">
-          Ready to Transform Your Recovery?
+          Get Your Ice Bath Delivered in Lebanon
         </h2>
         <p className="text-white/70 text-sm md:text-base max-w-xl mx-auto mb-8 md:mb-10">
-          Premium cold therapy systems with free delivery and professional installation anywhere in Lebanon. Start your recovery journey today.
+          Premium ice baths, water chillers, and cold plunge systems with free delivery and professional installation anywhere in Lebanon. Start your cold therapy journey today.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">

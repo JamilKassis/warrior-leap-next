@@ -34,10 +34,10 @@ const Benefits = () => {
         <div className="text-center mb-10 md:mb-14 lg:mb-16">
           <div className="w-14 md:w-20 lg:w-24 h-1 bg-brand-primary mb-4 md:mb-5 mx-auto transform -skew-x-12" />
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white/90">
-            Why Cold Therapy?
+            Benefits of Ice Bath & Cold Therapy
           </h2>
           <p className="text-white/50 text-sm md:text-base mt-3 max-w-lg mx-auto">
-            Science-backed benefits that transform how you recover, think, and perform.
+            Science-backed benefits of cold plunge that transform how you recover, think, and perform.
           </p>
         </div>
 

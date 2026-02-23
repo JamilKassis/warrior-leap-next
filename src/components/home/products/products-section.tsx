@@ -9,7 +9,7 @@ const ProductsSection = () => {
   const { products, loading, error } = useProducts();
 
   const content = {
-    header: { title: 'Our Products' },
+    header: { title: 'Ice Baths & Cold Plunge Equipment' },
   };
 
   if (loading) {

@@ -38,12 +38,13 @@ const HeroContent = ({ isLoaded, currentImageIndex }: HeroContentProps) => {
       } flex flex-col justify-center h-full`}
     >
       <div className="mb-4 sm:mb-8 md:mb-10 text-center relative">
-        <h1
+        <p
           ref={titleRef}
           className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight leading-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+          aria-hidden="true"
         >
           {currentImage.title}
-        </h1>
+        </p>
 
         <div className="mt-3 sm:mt-6 text-center">
           <p

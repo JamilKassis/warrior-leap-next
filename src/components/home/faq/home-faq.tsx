@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { faqData } from '@/data/faq-data';
 
-const homeFaqIndices = [5, 6, 4, 0, 1];
+const homeFaqIndices = [7, 10, 5, 8, 0];
 
 export function HomeFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -17,10 +17,10 @@ export function HomeFAQ() {
         <div className="text-center mb-8 md:mb-10 lg:mb-12">
           <div className="w-12 md:w-16 lg:w-20 h-1 bg-brand-primary mb-3 md:mb-4 mx-auto transform -skew-x-12" />
           <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-brand-dark">
-            Common Questions
+            Ice Bath FAQ
           </h2>
           <p className="text-gray-500 text-xs md:text-sm mt-2">
-            Quick answers to help you decide
+            Common questions about ice baths, chillers, and cold therapy in Lebanon
           </p>
         </div>
 
