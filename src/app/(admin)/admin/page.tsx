@@ -4,11 +4,17 @@ import { useState, useEffect } from 'react';
 import { TrustIndicatorsManagement } from '@/adminpanel/components/trust-indicators-management';
 import { TestimonialsManagement } from '@/adminpanel/components/testimonials-management';
 import { useOrders } from '@/hooks/use-orders';
+import { useTransactions } from '@/hooks/use-transactions';
+import { TransactionStats } from '@/types/transactions';
 import {
   CurrencyDollarIcon,
   ShoppingCartIcon,
   ClockIcon,
   UsersIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
+  ScaleIcon,
+  BanknotesIcon,
 } from '@heroicons/react/24/outline';
 
 interface DashboardStats {
@@ -24,7 +30,9 @@ interface DashboardStats {
 
 export default function AdminDashboard() {
   const { getOrderStats } = useOrders();
+  const { getTransactionStats } = useTransactions();
   const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [financeStats, setFinanceStats] = useState<TransactionStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,8 +42,12 @@ export default function AdminDashboard() {
   const loadStats = async () => {
     try {
       setLoading(true);
-      const orderStats = await getOrderStats();
+      const [orderStats, txnStats] = await Promise.all([
+        getOrderStats(),
+        getTransactionStats().catch(() => null),
+      ]);
       setStats(orderStats);
+      if (txnStats) setFinanceStats(txnStats);
     } catch (err) {
       console.error('Error loading dashboard stats:', err);
     } finally {
@@ -84,6 +96,41 @@ export default function AdminDashboard() {
           </div>
         ))}
       </div>
+
+      {/* Financial Overview */}
+      {financeStats && (
+        <div>
+          <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-300 mb-2 sm:mb-3 flex items-center gap-2">
+            <BanknotesIcon className="w-4 h-4 sm:w-5 sm:h-5 text-brand-primary" />
+            Financial Overview
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-6 mb-3 sm:mb-6 lg:mb-8">
+            {[
+              { label: 'Income', value: formatCurrency(financeStats.totalIncome), sub: `${formatCurrency(financeStats.monthIncome)} this month`, icon: ArrowTrendingUpIcon, color: 'green' },
+              { label: 'Expenses', value: formatCurrency(financeStats.totalExpenses), sub: `${formatCurrency(financeStats.monthExpenses)} this month`, icon: ArrowTrendingDownIcon, color: 'red' },
+              { label: 'Net Balance', value: formatCurrency(financeStats.netBalance), sub: financeStats.netBalance >= 0 ? 'Profitable' : 'In deficit', icon: ScaleIcon, color: financeStats.netBalance >= 0 ? 'green' : 'red' },
+              { label: 'Activity', value: `${financeStats.transactionCount} txns`, sub: `${formatCurrency(financeStats.monthIncome - financeStats.monthExpenses)} this month`, icon: BanknotesIcon, color: 'purple' },
+            ].map((card) => (
+              <div key={card.label} className="p-2.5 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl bg-brand-dark/30 border border-white/10 backdrop-blur-sm shadow-xl">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-gray-400 text-[10px] sm:text-xs font-medium uppercase tracking-wider">{card.label}</h3>
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-${card.color}-500/20 flex items-center justify-center`}>
+                    <card.icon className={`w-4 h-4 sm:w-5 sm:h-5 text-${card.color}-400`} />
+                  </div>
+                </div>
+                {loading ? (
+                  <div className="h-8 sm:h-10 bg-white/10 rounded animate-pulse" />
+                ) : (
+                  <>
+                    <p className="text-base sm:text-xl lg:text-3xl font-bold text-white mt-0.5 sm:mt-1">{card.value}</p>
+                    <div className={`mt-0.5 sm:mt-1 text-[10px] sm:text-xs text-${card.color}-400`}>{card.sub}</div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-2 sm:gap-4 lg:gap-8">
         <div className="p-2 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl bg-brand-dark/30 border border-white/10 backdrop-blur-sm shadow-xl">
