@@ -208,193 +208,7 @@ export function FinanceManagement() {
   // Sort balanced txns by date DESC for display (running balance computed ASC, display DESC)
   const displayTxns = [...balancedTxns].reverse();
 
-  // ─── Form Modal ────────────────────────────────────────────────
-  const FormModalComponent = () => {
-    if (!formModal.isOpen) return null;
-    const isEdit = !!formModal.transaction;
-
-    return (
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-        <div className="bg-brand-dark rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-white/10 max-h-[90vh] overflow-y-auto">
-          <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">
-            {isEdit ? 'Edit Transaction' : 'Add Transaction'}
-          </h3>
-
-          <div className="space-y-4">
-            {/* Date */}
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Date</label>
-              <input
-                type="date"
-                value={formData.transaction_date}
-                onChange={(e) => setFormData(prev => ({ ...prev, transaction_date: e.target.value }))}
-                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all"
-              />
-            </div>
-
-            {/* Description */}
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Description</label>
-              <input
-                type="text"
-                value={formData.description}
-                onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                placeholder="e.g. Cold Therapy System Sale"
-                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all"
-              />
-            </div>
-
-            {/* Category */}
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Category</label>
-              <select
-                value={formData.category}
-                onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as TransactionCategory }))}
-                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all"
-              >
-                {Object.entries(TRANSACTION_CATEGORIES).map(([key, { label }]) => (
-                  <option key={key} value={key} className="bg-brand-dark">{label}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* Type toggle */}
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">Type</label>
-              <div className="flex rounded-xl overflow-hidden border border-white/10">
-                <button
-                  type="button"
-                  onClick={() => setFormData(prev => ({ ...prev, type: 'income' }))}
-                  className={`flex-1 py-2.5 text-sm font-medium transition-all ${
-                    formData.type === 'income'
-                      ? 'bg-green-500/20 text-green-400 border-r border-green-500/30'
-                      : 'bg-white/5 text-gray-400 border-r border-white/10 hover:bg-white/10'
-                  }`}
-                >
-                  + Income
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setFormData(prev => ({ ...prev, type: 'expense' }))}
-                  className={`flex-1 py-2.5 text-sm font-medium transition-all ${
-                    formData.type === 'expense'
-                      ? 'bg-red-500/20 text-red-400'
-                      : 'bg-white/5 text-gray-400 hover:bg-white/10'
-                  }`}
-                >
-                  - Expense
-                </button>
-              </div>
-            </div>
-
-            {/* Amount */}
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Amount (USD)</label>
-              <input
-                type="number"
-                step="0.01"
-                min="0"
-                value={formData.amount || ''}
-                onChange={(e) => setFormData(prev => ({ ...prev, amount: parseFloat(e.target.value) || 0 }))}
-                placeholder="0.00"
-                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all"
-              />
-            </div>
-
-            {/* Notes */}
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">Notes (optional)</label>
-              <textarea
-                value={formData.notes}
-                onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
-                placeholder="Additional details..."
-                rows={2}
-                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all resize-none"
-              />
-            </div>
-          </div>
-
-          <div className="flex justify-end space-x-3 mt-6">
-            <button
-              onClick={() => setFormModal({ isOpen: false, transaction: null })}
-              disabled={saving}
-              className="px-5 py-2.5 text-gray-300 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all font-medium disabled:opacity-50"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleFormSubmit}
-              disabled={saving}
-              className="px-6 py-2.5 text-white bg-brand-primary rounded-xl hover:bg-brand-primary/90 transition-all font-medium shadow-lg shadow-brand-primary/25 disabled:opacity-50 flex items-center"
-            >
-              {saving ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
-                  Saving...
-                </>
-              ) : (
-                isEdit ? 'Update' : 'Add Transaction'
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  // ─── Delete Modal ──────────────────────────────────────────────
-  const DeleteModal = () => {
-    if (!deleteConfirmModal.isOpen || !deleteConfirmModal.transaction) return null;
-    const txn = deleteConfirmModal.transaction;
-
-    return (
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl border border-red-200">
-          <div className="flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-red-100 rounded-full">
-            <TrashIcon className="w-8 h-8 text-red-600" />
-          </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">Delete Transaction</h3>
-          <div className="mb-6 text-center">
-            <p className="text-gray-700 mb-3">
-              Are you sure you want to delete <span className="font-semibold text-gray-900">{txn.description}</span>?
-            </p>
-            <p className="text-sm text-red-600 font-medium">This action cannot be undone.</p>
-            <div className="mt-4 p-4 bg-gray-50 rounded-lg text-left text-sm space-y-2 text-gray-800">
-              <div><span className="font-medium text-gray-900">Date:</span> {formatDate(txn.transaction_date)}</div>
-              <div><span className="font-medium text-gray-900">Amount:</span> {formatCurrency(txn.amount)}</div>
-              <div><span className="font-medium text-gray-900">Type:</span> {txn.type}</div>
-            </div>
-          </div>
-          <div className="flex justify-end space-x-4">
-            <button
-              onClick={() => setDeleteConfirmModal({ isOpen: false, transaction: null })}
-              disabled={saving}
-              className="px-6 py-3 text-gray-700 bg-gray-100 border border-gray-300 rounded-xl hover:bg-gray-200 transition-all font-medium disabled:opacity-50"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={confirmDelete}
-              disabled={saving}
-              className="px-6 py-3 text-white bg-red-600 rounded-xl hover:bg-red-700 transition-all font-medium shadow-lg disabled:opacity-50 flex items-center"
-            >
-              {saving ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
-                  Deleting...
-                </>
-              ) : (
-                <>
-                  <TrashIcon className="w-4 h-4 mr-2" />
-                  Delete
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  const isEdit = !!formModal.transaction;
 
   // ─── Loading / Error states ────────────────────────────────────
   if (loading && transactions.length === 0) {
@@ -424,8 +238,191 @@ export function FinanceManagement() {
 
   return (
     <div className="space-y-2 sm:space-y-4 lg:space-y-6">
-      <FormModalComponent />
-      <DeleteModal />
+      {/* ─── Form Modal (inlined to preserve input focus) ──────── */}
+      {formModal.isOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-brand-dark rounded-xl p-5 max-w-md w-full shadow-2xl border border-white/10 max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-white">
+                {isEdit ? 'Edit Transaction' : 'Add Transaction'}
+              </h3>
+              <button
+                onClick={() => setFormModal({ isOpen: false, transaction: null })}
+                className="p-1 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
+              >
+                <XCircleIcon className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              {/* Date & Category row */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-medium text-gray-400 mb-1">Date</label>
+                  <input
+                    type="date"
+                    value={formData.transaction_date}
+                    onChange={(e) => setFormData(prev => ({ ...prev, transaction_date: e.target.value }))}
+                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-400 mb-1">Category</label>
+                  <select
+                    value={formData.category}
+                    onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as TransactionCategory }))}
+                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                  >
+                    {Object.entries(TRANSACTION_CATEGORIES).map(([key, { label }]) => (
+                      <option key={key} value={key} className="bg-brand-dark">{label}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Description */}
+              <div>
+                <label className="block text-xs font-medium text-gray-400 mb-1">Description</label>
+                <input
+                  type="text"
+                  value={formData.description}
+                  onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                  placeholder="e.g. Cold Therapy System Sale"
+                  className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder-gray-500 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                />
+              </div>
+
+              {/* Type toggle & Amount row */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-medium text-gray-400 mb-1">Type</label>
+                  <div className="flex rounded-lg overflow-hidden border border-white/10">
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({ ...prev, type: 'income' }))}
+                      className={`flex-1 py-2 text-xs font-semibold transition-all ${
+                        formData.type === 'income'
+                          ? 'bg-green-500/20 text-green-400'
+                          : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                      }`}
+                    >
+                      + Income
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({ ...prev, type: 'expense' }))}
+                      className={`flex-1 py-2 text-xs font-semibold transition-all border-l border-white/10 ${
+                        formData.type === 'expense'
+                          ? 'bg-red-500/20 text-red-400'
+                          : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                      }`}
+                    >
+                      - Expense
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-400 mb-1">Amount (USD)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formData.amount || ''}
+                    onChange={(e) => setFormData(prev => ({ ...prev, amount: parseFloat(e.target.value) || 0 }))}
+                    placeholder="0.00"
+                    className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder-gray-500 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-all"
+                  />
+                </div>
+              </div>
+
+              {/* Notes */}
+              <div>
+                <label className="block text-xs font-medium text-gray-400 mb-1">Notes (optional)</label>
+                <textarea
+                  value={formData.notes}
+                  onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
+                  placeholder="Additional details..."
+                  rows={2}
+                  className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder-gray-500 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary/30 transition-all resize-none"
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-2 mt-4 pt-3 border-t border-white/10">
+              <button
+                onClick={() => setFormModal({ isOpen: false, transaction: null })}
+                disabled={saving}
+                className="px-4 py-2 text-gray-300 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-all text-sm font-medium disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleFormSubmit}
+                disabled={saving}
+                className="px-5 py-2 text-white bg-brand-primary rounded-lg hover:bg-brand-primary/90 transition-all text-sm font-medium shadow-lg shadow-brand-primary/25 disabled:opacity-50 flex items-center"
+              >
+                {saving ? (
+                  <>
+                    <div className="animate-spin rounded-full h-3.5 w-3.5 border-2 border-white border-t-transparent mr-2" />
+                    Saving...
+                  </>
+                ) : (
+                  isEdit ? 'Update' : 'Add Transaction'
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─── Delete Modal (inlined) ───────────────────────────────── */}
+      {deleteConfirmModal.isOpen && deleteConfirmModal.transaction && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-brand-dark rounded-xl p-5 max-w-sm w-full shadow-2xl border border-white/10">
+            <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-red-500/15 rounded-full">
+              <TrashIcon className="w-6 h-6 text-red-400" />
+            </div>
+            <h3 className="text-lg font-bold text-white mb-3 text-center">Delete Transaction</h3>
+            <div className="mb-4 text-center">
+              <p className="text-sm text-gray-300 mb-2">
+                Delete <span className="font-semibold text-white">{deleteConfirmModal.transaction.description}</span>?
+              </p>
+              <p className="text-xs text-red-400 font-medium">This action cannot be undone.</p>
+              <div className="mt-3 p-3 bg-white/5 rounded-lg text-left text-xs space-y-1.5 text-gray-300 border border-white/5">
+                <div><span className="font-medium text-gray-200">Date:</span> {formatDate(deleteConfirmModal.transaction.transaction_date)}</div>
+                <div><span className="font-medium text-gray-200">Amount:</span> {formatCurrency(deleteConfirmModal.transaction.amount)}</div>
+                <div><span className="font-medium text-gray-200">Type:</span> {deleteConfirmModal.transaction.type}</div>
+              </div>
+            </div>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setDeleteConfirmModal({ isOpen: false, transaction: null })}
+                disabled={saving}
+                className="px-4 py-2 text-gray-300 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-all text-sm font-medium disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                disabled={saving}
+                className="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-all text-sm font-medium disabled:opacity-50 flex items-center"
+              >
+                {saving ? (
+                  <>
+                    <div className="animate-spin rounded-full h-3.5 w-3.5 border-2 border-white border-t-transparent mr-2" />
+                    Deleting...
+                  </>
+                ) : (
+                  <>
+                    <TrashIcon className="w-3.5 h-3.5 mr-1.5" />
+                    Delete
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 justify-between">
