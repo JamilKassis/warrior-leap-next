@@ -75,18 +75,24 @@ const HeroContent = ({ isLoaded, currentImageIndex }: HeroContentProps) => {
         />
 
         <div
-          className={`mt-6 sm:mt-8 transition-all duration-700 delay-300 ${
+          className={`mt-6 sm:mt-8 transition-all duration-700 delay-300 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           <Link
-            href="/products"
-            className="inline-flex items-center gap-2 px-7 py-3 sm:px-9 sm:py-3.5 border border-white/40 text-white font-display font-medium text-sm sm:text-base rounded-full backdrop-blur-sm bg-white/10 hover:bg-white/20 hover:border-white/60 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300 active:scale-[0.97]"
+            href="/rent"
+            className="inline-flex items-center gap-2 px-7 py-3 sm:px-9 sm:py-3.5 bg-brand-primary text-white font-display font-medium text-sm sm:text-base rounded-full hover:bg-brand-primary/85 hover:shadow-[0_0_20px_rgba(73,97,99,0.4)] transition-all duration-300 active:scale-[0.97]"
           >
-            Explore Products
+            Book Your Experience
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
+          </Link>
+          <Link
+            href="/products"
+            className="text-white/70 hover:text-white text-sm underline-offset-4 hover:underline transition-colors"
+          >
+            Or buy your own →
           </Link>
         </div>
       </div>
