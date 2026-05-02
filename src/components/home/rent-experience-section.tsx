@@ -70,7 +70,7 @@ const RentExperienceSection = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-5">
+          <div className="hidden lg:block lg:col-span-5">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
               <picture>
                 <source srcSet="/assets/images/Girl Entering Ice Tub-mobile.webp" media="(max-width: 767px)" type="image/webp" />
