@@ -60,8 +60,7 @@ const Navbar: React.FC = () => {
 
   const navigationItems = [
     { name: 'Home', path: '/' },
-    { name: 'Rent', path: '/rent', highlight: true },
-    { name: 'Shop', path: '/products' },
+    { name: 'Products', path: '/products' },
     { name: 'About', path: '/about' },
     { name: 'Blog', path: '/blog' },
     { name: 'FAQ', path: '/faq' },
@@ -194,37 +193,24 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-7 flex-shrink-0">
-              {navigationItems.map((item) =>
-                item.highlight ? (
-                  <Link
-                    key={item.name}
-                    href={item.path}
-                    className={`group relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-brand-primary text-white text-sm font-medium hover:bg-brand-primary/85 hover:shadow-[0_0_16px_rgba(73,97,99,0.4)] transition-all ${
-                      isCurrentPath(item.path) ? 'shadow-[0_0_16px_rgba(73,97,99,0.4)]' : ''
-                    }`}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/90" />
-                    {item.name}
-                  </Link>
-                ) : (
-                  <Link
-                    key={item.name}
-                    href={item.path}
-                    className={`group relative text-white hover:text-brand-primary transition-colors duration-300 px-1 py-1 ${
-                      isCurrentPath(item.path) ? 'text-brand-primary font-medium' : ''
-                    }`}
-                  >
-                    {item.name}
-                    {isCurrentPath(item.path) && (
-                      <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-brand-primary/50 via-brand-primary to-brand-primary/50 rounded-full shadow-[0_0_8px_0_rgba(73,97,99,0.5)] origin-center scale-x-100 transition-transform duration-300" />
-                    )}
-                    <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-primary/20 rounded-full origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                  </Link>
-                )
-              )}
+            <div className="hidden md:flex items-center space-x-8 flex-shrink-0">
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`group relative text-white hover:text-brand-primary transition-colors duration-300 px-2 py-1 ${
+                    isCurrentPath(item.path) ? 'text-brand-primary font-medium' : ''
+                  }`}
+                >
+                  {item.name}
+                  {isCurrentPath(item.path) && (
+                    <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-brand-primary/50 via-brand-primary to-brand-primary/50 rounded-full shadow-[0_0_8px_0_rgba(73,97,99,0.5)] origin-center scale-x-100 transition-transform duration-300" />
+                  )}
+                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand-primary/20 rounded-full origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                </Link>
+              ))}
 
-              <div className="ml-4 flex-shrink-0 p-1">
+              <div className="ml-6 flex-shrink-0 p-1">
                 <CartButton />
               </div>
             </div>
@@ -292,21 +278,13 @@ const Navbar: React.FC = () => {
                   key={item.name}
                   href={item.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex w-full items-center justify-between text-left text-xl py-2.5 border-b border-white/10 transition-colors ${
+                  className={`block w-full text-left text-xl py-2.5 border-b border-white/10 transition-colors ${
                     isCurrentPath(item.path)
                       ? 'text-brand-primary font-medium'
-                      : item.highlight
-                        ? 'text-white font-medium'
-                        : 'text-white/80 hover:text-white'
+                      : 'text-white/80 hover:text-white'
                   }`}
                 >
-                  <span>{item.name}</span>
-                  {item.highlight && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-primary/20 border border-brand-primary/40 text-xs text-brand-primary">
-                      <span className="w-1 h-1 rounded-full bg-brand-primary" />
-                      New
-                    </span>
-                  )}
+                  {item.name}
                 </Link>
               ))}
             </nav>

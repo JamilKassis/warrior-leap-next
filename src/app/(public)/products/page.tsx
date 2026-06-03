@@ -137,7 +137,7 @@ export default async function ProductsPage() {
 
         {/* SEO Content */}
         <section className="py-10 md:py-14 bg-gray-50 border-t border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4">
               Buy Ice Bath & Cold Plunge Equipment in Lebanon
             </h2>
@@ -145,7 +145,7 @@ export default async function ProductsPage() {
               <p>
                 Warrior Leap offers a complete range of <strong>ice bath</strong> and <strong>cold plunge</strong> products
                 in Lebanon. From portable <strong>ice tubs</strong> perfect for beginners to professional-grade <strong>water
-                chillers</strong> that keep your water at the ideal temperature, we have everything you need to start or
+                chillers</strong> that keep your water at the ideal temperature — we have everything you need to start or
                 upgrade your cold therapy routine.
               </p>
               <p>
@@ -154,7 +154,7 @@ export default async function ProductsPage() {
                 warranty</strong> and dedicated local support from our Lebanon-based team.
               </p>
               <p>
-                Whether you call it an ice bath, cold plunge, ice tub, or cold water therapy, Warrior Leap has the right
+                Whether you call it an ice bath, cold plunge, ice tub, or cold water therapy — Warrior Leap has the right
                 equipment at the best prices in Lebanon. Browse our collection above and contact us on WhatsApp for personalized
                 recommendations.
               </p>

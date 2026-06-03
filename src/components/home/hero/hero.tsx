@@ -83,8 +83,8 @@ const Hero = () => {
     setCurrentImageIndex(index);
   }, []);
 
-  const scrollToNext = useCallback(() => {
-    const element = document.getElementById('rent-experience') || document.getElementById('products');
+  const scrollToProducts = useCallback(() => {
+    const element = document.getElementById('products');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -121,9 +121,9 @@ const Hero = () => {
           }`}
         >
           <button
-            onClick={scrollToNext}
+            onClick={scrollToProducts}
             className="group flex flex-col items-center space-y-0"
-            aria-label="Scroll down to learn more"
+            aria-label="Scroll down to view our products"
           >
             <span className="text-xs uppercase tracking-[0.2em] text-white/90 group-hover:text-white transition-colors duration-300">
               Scroll

@@ -14,7 +14,6 @@ import {
   Cog6ToothIcon,
   Bars3Icon,
   XMarkIcon,
-  CalendarDaysIcon,
 } from '@heroicons/react/24/outline';
 import { Package } from 'lucide-react';
 import { getSupabaseClient } from '@/lib/supabase/client';
@@ -22,10 +21,9 @@ import { useState, useEffect } from 'react';
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: ChatBubbleLeftRightIcon, exact: true },
-  { name: 'Bookings', href: '/admin/bookings', icon: CalendarDaysIcon },
-  { name: 'Orders', href: '/admin/orders', icon: ClipboardDocumentListIcon },
   { name: 'Products', href: '/admin/products', icon: CubeIcon },
   { name: 'Inventory', href: '/admin/inventory', icon: Package },
+  { name: 'Orders', href: '/admin/orders', icon: ClipboardDocumentListIcon },
   { name: 'Finance', href: '/admin/finance', icon: BanknotesIcon },
   { name: 'Blog', href: '/admin/blog', icon: DocumentTextIcon },
   { name: 'Newsletter', href: '/admin/newsletter', icon: EnvelopeIcon },

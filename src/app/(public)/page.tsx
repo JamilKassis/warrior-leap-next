@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/home/hero/hero';
-import RentExperienceSection from '@/components/home/rent-experience-section';
 import ProductsSection from '@/components/home/products/products-section';
 import Benefits from '@/components/home/benefits/benefits';
 import { Testimonials } from '@/components/testimonials/testimonials';
@@ -14,33 +13,31 @@ import { faqData } from '@/data/faq-data';
 import { generateWebSiteSchema } from '@/lib/schemas/website-schema';
 
 export const metadata: Metadata = {
-  title: 'Ice Bath Rental Lebanon | Mobile Cold Plunge Delivery & Setup | Warrior Leap',
+  title: 'Ice Bath Lebanon | Ice Tub & Cold Plunge Systems | Buy Online',
   description:
-    'Rent the ice bath experience anywhere in Lebanon. Mobile delivery, setup and trained attendants for home, corporate, gym, retreat and event packages — Beirut to the Bekaa. Premium ice baths also available to buy.',
+    'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems, water chillers, and recovery equipment. Best ice bath Lebanon prices. Free delivery and installation in Beirut and all Lebanon.',
   keywords: [
-    'ice bath rental lebanon',
-    'mobile ice bath beirut',
-    'cold plunge rental lebanon',
-    'ice bath for events lebanon',
-    'corporate ice bath lebanon',
-    'ice bath delivery beirut',
-    'ice bath birthday lebanon',
-    'gym ice bath rental',
-    'rent ice bath beirut',
-    'ice bath experience lebanon',
     'ice bath lebanon',
     'ice tub lebanon',
     'cold plunge lebanon',
+    'ice bath',
+    'ice tub',
+    'cold plunge',
     'water chiller lebanon',
+    'chiller',
     'cold therapy',
+    'buy ice bath lebanon',
     'ice bath beirut',
+    'ice bath delivery lebanon',
+    'portable ice bath',
     'cold water therapy',
     'recovery equipment',
+    'ice bath price lebanon',
   ],
   openGraph: {
-    title: 'Ice Bath Rental Lebanon | Mobile Cold Plunge Experience | Warrior Leap',
+    title: 'Ice Bath Lebanon | #1 Ice Tub & Cold Plunge Shop | Warrior Leap',
     description:
-      'Rent the ice bath experience anywhere in Lebanon. Mobile delivery, setup and trained attendants for home, corporate, gym, retreat and event packages.',
+      'Buy ice bath and ice tub in Lebanon. Premium cold plunge systems, water chillers, and recovery equipment. Free delivery and installation across Lebanon.',
     type: 'website',
     url: 'https://warriorleap.com/',
   },
@@ -58,7 +55,6 @@ export default function HomePage() {
       <JsonLd data={generateWebSiteSchema()} />
       <Hero />
       <TrustBadges />
-      <RentExperienceSection />
       <SEOIntro />
       <div className="flex flex-col">
         <ProductsSection />

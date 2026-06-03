@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Snowflake, MessageCircle } from 'lucide-react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 
 export function FinalCTA() {
   return (
@@ -13,10 +13,10 @@ export function FinalCTA() {
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="w-12 md:w-16 lg:w-20 h-1 bg-brand-primary mb-4 md:mb-5 mx-auto transform -skew-x-12" />
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4">
-          Get Your Ice Bath in Lebanon
+          Get Your Ice Bath Delivered in Lebanon
         </h2>
         <p className="text-white/70 text-sm md:text-base max-w-xl mx-auto mb-8 md:mb-10">
-          Buy your own ice bath or chiller, or rent the experience for an event, gym, hotel, or just for yourself. Start your cold therapy journey today.
+          Premium ice baths, water chillers, and cold plunge systems with free delivery and professional installation anywhere in Lebanon. Start your cold therapy journey today.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
@@ -26,13 +26,6 @@ export function FinalCTA() {
           >
             Shop Products
             <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/rent"
-            className="inline-flex items-center gap-2 px-6 py-2.5 md:px-8 md:py-3 bg-brand-primary text-white font-display font-medium text-xs md:text-sm rounded-lg hover:bg-brand-primary/90 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98]"
-          >
-            <Snowflake className="w-4 h-4" />
-            Rent the Experience
           </Link>
           <a
             href="https://wa.me/96171457820"
