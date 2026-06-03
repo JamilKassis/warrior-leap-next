@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { getSupabaseClient } from '@/lib/supabase/client';
+import { revalidateStorefront } from '@/lib/revalidate-client';
 import { PlusIcon, XMarkIcon, PencilIcon, TrashIcon, ShieldCheckIcon, ClockIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 
 interface Warranty {
@@ -77,6 +78,7 @@ export function WarrantyManagement() {
       setShowForm(false);
       (e.target as HTMLFormElement).reset();
       fetchWarranties();
+      await revalidateStorefront();
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save warranty');
@@ -98,6 +100,7 @@ export function WarrantyManagement() {
 
       if (error) throw error;
       fetchWarranties();
+      await revalidateStorefront();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to delete warranty');
     }
@@ -114,6 +117,7 @@ export function WarrantyManagement() {
 
       if (error) throw error;
       fetchWarranties();
+      await revalidateStorefront();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to update warranty status');
     }

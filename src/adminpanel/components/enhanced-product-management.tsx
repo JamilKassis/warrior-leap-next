@@ -5,6 +5,7 @@ import { getSupabaseClient } from '@/lib/supabase/client';
 import { Search, Plus, Edit2, Trash2, Package, Copy, GripVertical } from 'lucide-react';
 import type { Product, ProductFormData } from '../types';
 import { ProductFormModal } from './products/product-form-modal';
+import { revalidateStorefront } from '@/lib/revalidate-client';
 
 // Type for database product image records
 interface DbProductImage {
@@ -183,6 +184,7 @@ export function EnhancedProductManagement() {
       }
 
       await fetchProducts();
+      await revalidateStorefront();
       resetForm();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save product');
@@ -232,6 +234,7 @@ export function EnhancedProductManagement() {
 
       if (error) throw error;
       await fetchProducts();
+      await revalidateStorefront();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to delete product');
     } finally {
@@ -296,6 +299,7 @@ export function EnhancedProductManagement() {
       }
 
       await fetchProducts();
+      await revalidateStorefront();
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to duplicate product');
@@ -364,6 +368,7 @@ export function EnhancedProductManagement() {
       );
 
       await Promise.all(updates);
+      await revalidateStorefront();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save product order');
     } finally {

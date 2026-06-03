@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { RefreshCw, AlertTriangle, Save, X } from 'lucide-react';
 import { getSupabaseClient } from '@/lib/supabase/client';
+import { revalidateStorefront } from '@/lib/revalidate-client';
 
 interface ProductWithInventory {
   id: string;
@@ -77,6 +78,10 @@ export function InventoryManagement() {
         delete newState[productId];
         return newState;
       });
+
+      // Stock changes the in-stock/out-of-stock status shown on the storefront,
+      // so refresh the cached product pages immediately.
+      await revalidateStorefront();
 
       console.log(`Stock updated for product ${productId}: ${newStock}`);
     } catch (err) {

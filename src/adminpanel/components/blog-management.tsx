@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Search, Calendar, User, Image, Save, X } from 'lucide-react';
 import { BlogPost, BlogFormData, generateSlug } from '@/types/blog';
 import { BlogApi } from '@/lib/blog-api-client';
+import { revalidateStorefront } from '@/lib/revalidate-client';
 
 export function BlogManagement() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -75,6 +76,7 @@ export function BlogManagement() {
         setPosts([newPost, ...posts]);
       }
 
+      await revalidateStorefront();
       resetForm();
     } catch (err) {
       console.error('Error saving post:', err);
@@ -124,6 +126,7 @@ export function BlogManagement() {
         setLoading(true);
         await BlogApi.deletePost(postId);
         setPosts(posts.filter(post => post.id !== postId));
+        await revalidateStorefront();
       } catch (err) {
         console.error('Error deleting post:', err);
         setError('Failed to delete the post. Please try again.');
