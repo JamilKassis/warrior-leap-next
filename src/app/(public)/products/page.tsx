@@ -12,7 +12,7 @@ export const revalidate = 1800;
 export const metadata: Metadata = {
   title: 'Buy Ice Bath & Cold Plunge in Lebanon | Ice Tubs & Chillers',
   description:
-    'Shop ice baths, ice tubs, water chillers, and cold plunge systems in Lebanon. Starting at $600. 1-year warranty, free delivery and installation across Lebanon. Best ice bath prices guaranteed.',
+    'Shop ice baths, ice tubs, water chillers, and cold plunge systems in Lebanon. Starting at $600. 6-month warranty, free delivery and installation across Lebanon. Best ice bath prices guaranteed.',
   keywords: [
     'buy ice bath lebanon',
     'ice tub lebanon',
@@ -109,7 +109,7 @@ export default async function ProductsPage() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Shield className="w-3.5 h-3.5" />
-                  <span>1-Year Warranty</span>
+                  <span>6-Month Warranty</span>
                 </div>
               </div>
             </div>
@@ -150,7 +150,7 @@ export default async function ProductsPage() {
               </p>
               <p>
                 All our products include <strong>free delivery and professional installation</strong> anywhere in Lebanon,
-                including Beirut, Tripoli, Sidon, Jounieh, and beyond. Every ice bath and chiller comes with a <strong>1-year
+                including Beirut, Tripoli, Sidon, Jounieh, and beyond. Every ice bath and chiller comes with a <strong>6-month
                 warranty</strong> and dedicated local support from our Lebanon-based team.
               </p>
               <p>

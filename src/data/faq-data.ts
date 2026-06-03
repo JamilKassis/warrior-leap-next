@@ -30,7 +30,7 @@ export const faqData: FAQItem[] = [
   },
   {
     question: "What warranty and support do you offer on your ice bath products?",
-    answer: "We offer a 1-year warranty on both ice tubs and water chillers. Our Lebanon-based support team provides responsive help, fast replacements, and long-term care guidance."
+    answer: "We offer a 6-month warranty on both ice tubs and water chillers. Our Lebanon-based support team provides responsive help, fast replacements, and long-term care guidance."
   },
   {
     question: "Where can I buy an ice bath in Lebanon?",

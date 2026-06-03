@@ -19,7 +19,7 @@ SET
     {"text": "Fits any tub up to 300L", "icon": "Target"},
     {"text": "Built-in filtration included", "icon": "Filter"},
     {"text": "Compact enough for any space", "icon": "CheckCircle"},
-    {"text": "1-year warranty", "icon": "Shield"}
+    {"text": "6-month warranty", "icon": "Shield"}
   ]'::jsonb,
   specifications = '[
     {"icon": "Thermometer", "title": "Temperature Range", "description": "Cools water down to 6°C (43°F). Effective for daily cold therapy and recovery.", "highlight": true},
@@ -46,7 +46,7 @@ SET
     {"text": "2x the power, faster recovery", "icon": "Gauge"},
     {"text": "Powers large or dual-person tubs", "icon": "Users"},
     {"text": "Built-in filtration included", "icon": "Filter"},
-    {"text": "1-year warranty", "icon": "Shield"}
+    {"text": "6-month warranty", "icon": "Shield"}
   ]'::jsonb,
   specifications = '[
     {"icon": "Thermometer", "title": "Temperature Range", "description": "Cools water down to 3°C (37°F) for those who want the coldest plunge possible.", "highlight": true},
@@ -73,7 +73,7 @@ SET
     {"text": "Stays cold for hours", "icon": "Layers"},
     {"text": "Medical-grade, puncture-resistant", "icon": "Shield"},
     {"text": "Folds flat for easy storage", "icon": "CheckCircle"},
-    {"text": "1-year warranty", "icon": "Shield"}
+    {"text": "6-month warranty", "icon": "Shield"}
   ]'::jsonb,
   specifications = '[
     {"icon": "Maximize2", "title": "Size", "description": "90 × 80 cm. Fits full-body immersion up to 188 cm (6''2\").", "highlight": true},
@@ -100,7 +100,7 @@ SET
     {"text": "Ready to use in 15 minutes", "icon": "Clock"},
     {"text": "Stays cold for hours", "icon": "Layers"},
     {"text": "Medical-grade, puncture-resistant", "icon": "Shield"},
-    {"text": "1-year warranty", "icon": "Shield"}
+    {"text": "6-month warranty", "icon": "Shield"}
   ]'::jsonb,
   specifications = '[
     {"icon": "Maximize2", "title": "Size", "description": "170 × 80 × 70 cm. Room for two adults or one person fully stretched out.", "highlight": true},
@@ -127,7 +127,7 @@ SET
     {"text": "Always at 6°C, always ready", "icon": "Thermometer"},
     {"text": "Free delivery and installation", "icon": "CheckCircle"},
     {"text": "No ice needed, ever", "icon": "Target"},
-    {"text": "1-year warranty", "icon": "Shield"}
+    {"text": "6-month warranty", "icon": "Shield"}
   ]'::jsonb,
   specifications = '[
     {"icon": "Award", "title": "Complete System", "description": "Everything you need in one box: Warrior Tub + Warrior Chiller + all accessories. Plug in and plunge.", "highlight": true},
@@ -154,7 +154,7 @@ SET
     {"text": "Fits 2 people, cools to 3°C", "icon": "Users"},
     {"text": "Free delivery and installation", "icon": "CheckCircle"},
     {"text": "Built for athletes and gyms", "icon": "Target"},
-    {"text": "1-year warranty", "icon": "Shield"}
+    {"text": "6-month warranty", "icon": "Shield"}
   ]'::jsonb,
   specifications = '[
     {"icon": "Award", "title": "Complete System", "description": "Everything you need: Warrior Tub XL + Warrior Chiller Pro + all accessories.", "highlight": true},
@@ -178,7 +178,8 @@ UPDATE warranties
 SET
   name = 'Warrior Leap Guarantee',
   description = 'We stand behind every product we sell. If something goes wrong, we''ll make it right.',
-  coverage_details = 'Full coverage for 12 months: manufacturing defects, parts, and labor. If your product fails, we''ll repair or replace it. No questions asked.',
+  duration_months = 6,
+  coverage_details = 'Full coverage for 6 months: manufacturing defects, parts, and labor. If your product fails, we''ll repair or replace it. No questions asked.',
   terms_and_conditions = 'Covers all manufacturing defects and normal use issues. Does not cover damage from misuse or unauthorized modifications. Contact us anytime for support.'
 WHERE id = '07035829-7c2a-435b-af9a-9c5d1069efdc';
 
