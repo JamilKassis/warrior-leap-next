@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { createServerSupabaseClient } from '@/lib/supabase/server';
-import { ProductWithInventory } from '@/types/inventory';
+import { getActiveProducts } from '@/lib/server/queries';
 import { ProductCard } from '@/components/shared/product-card';
 import JsonLd from '@/components/json-ld';
 import { generateCollectionSchema } from '@/lib/schemas/collection-schema';
@@ -35,31 +34,8 @@ export const metadata: Metadata = {
   },
 };
 
-async function getProducts(): Promise<ProductWithInventory[]> {
-  const supabase = createServerSupabaseClient();
-  const { data, error } = await supabase
-    .from('products_with_inventory')
-    .select('*')
-    .neq('status', 'inactive')
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error('Error fetching products:', error);
-    return [];
-  }
-
-  return (data || []).sort((a: ProductWithInventory, b: ProductWithInventory) => {
-    const orderA = a.display_order ?? 999;
-    const orderB = b.display_order ?? 999;
-    if (orderA !== orderB) return orderA - orderB;
-    if (a.computed_status === 'active' && b.computed_status !== 'active') return -1;
-    if (a.computed_status !== 'active' && b.computed_status === 'active') return 1;
-    return 0;
-  });
-}
-
 export default async function ProductsPage() {
-  const products = await getProducts();
+  const products = await getActiveProducts();
 
   const breadcrumbs = [
     { name: 'Home', url: 'https://warriorleap.com' },

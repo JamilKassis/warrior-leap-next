@@ -2,13 +2,17 @@
 
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import { useTestimonials } from '@/hooks/use-testimonials';
+import { Testimonial, useTestimonials } from '@/hooks/use-testimonials';
 import { TestimonialsHeader } from './testimonials-header';
 import { TestimonialsCarousel } from './testimonials-carousel';
 import { TestimonialForm } from './testimonial-form';
 
-export function Testimonials() {
-  const { testimonials, loading, error, addTestimonial } = useTestimonials();
+interface TestimonialsProps {
+  initialTestimonials?: Testimonial[];
+}
+
+export function Testimonials({ initialTestimonials }: TestimonialsProps) {
+  const { testimonials, loading, error, addTestimonial } = useTestimonials(initialTestimonials);
   const [showForm, setShowForm] = useState(false);
 
   if (loading)

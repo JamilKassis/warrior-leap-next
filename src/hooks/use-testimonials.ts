@@ -25,11 +25,12 @@ const getClientIP = async (): Promise<string> => {
   }
 };
 
-export function useTestimonials() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
+export function useTestimonials(initialTestimonials?: Testimonial[]) {
+  const hasInitialData = initialTestimonials !== undefined;
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(initialTestimonials ?? []);
+  const [loading, setLoading] = useState(!hasInitialData);
   const [error, setError] = useState<Error | null>(null);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(hasInitialData);
 
   const fetchTestimonials = useCallback(async () => {
     if (!isInitialized) setLoading(true);

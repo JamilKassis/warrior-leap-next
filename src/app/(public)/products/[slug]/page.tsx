@@ -102,13 +102,15 @@ export default async function ProductDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = await getProductBySlug(slug);
+  const allProducts = await getAllProducts();
+  const product = allProducts.find((p) => nameToSlug(p.name) === slug) || null;
 
   if (!product) {
     notFound();
   }
 
   const productImages = await getProductImages(product.id);
+  const relatedProducts = allProducts.filter((p) => p.name !== product.name);
 
   const breadcrumbs = [
     { name: 'Home', url: 'https://warriorleap.com' },
@@ -120,7 +122,7 @@ export default async function ProductDetailPage({
     <>
       <JsonLd data={generateProductSchema(product)} />
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
-      <ProductDetailClient product={product} productImages={productImages} />
+      <ProductDetailClient product={product} productImages={productImages} relatedProducts={relatedProducts} />
     </>
   );
 }

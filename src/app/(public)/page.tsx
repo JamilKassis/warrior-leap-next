@@ -11,6 +11,9 @@ import JsonLd from '@/components/json-ld';
 import { generateFAQSchema } from '@/lib/schemas/faq-schema';
 import { faqData } from '@/data/faq-data';
 import { generateWebSiteSchema } from '@/lib/schemas/website-schema';
+import { getActiveProducts, getApprovedTestimonials } from '@/lib/server/queries';
+
+export const revalidate = 1800;
 
 export const metadata: Metadata = {
   title: 'Ice Bath Lebanon | Ice Tub & Cold Plunge Systems | Buy Online',
@@ -48,7 +51,12 @@ export const metadata: Metadata = {
 
 const homeFaqItems = [7, 10, 5, 8, 0].map((i) => faqData[i]);
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [products, testimonials] = await Promise.all([
+    getActiveProducts(),
+    getApprovedTestimonials(),
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={generateFAQSchema(homeFaqItems)} />
@@ -57,9 +65,9 @@ export default function HomePage() {
       <TrustBadges />
       <SEOIntro />
       <div className="flex flex-col">
-        <ProductsSection />
+        <ProductsSection products={products} />
         <Benefits />
-        <Testimonials />
+        <Testimonials initialTestimonials={testimonials} />
         <HomeFAQ />
         <FinalCTA />
       </div>

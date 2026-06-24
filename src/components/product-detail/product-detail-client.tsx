@@ -23,9 +23,10 @@ interface ProductImageData {
 interface ProductDetailClientProps {
   product: ProductWithInventory;
   productImages: ProductImageData[];
+  relatedProducts: ProductWithInventory[];
 }
 
-export default function ProductDetailClient({ product, productImages }: ProductDetailClientProps) {
+export default function ProductDetailClient({ product, productImages, relatedProducts }: ProductDetailClientProps) {
   const [isMainCartVisible, setIsMainCartVisible] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const addToCartRef = useRef<HTMLDivElement>(null);
@@ -171,7 +172,7 @@ export default function ProductDetailClient({ product, productImages }: ProductD
         <ProductWarranty />
 
         {/* Related */}
-        <RelatedProducts currentProductName={product.name} />
+        <RelatedProducts currentProductName={product.name} products={relatedProducts} />
       </div>
 
       {/* Sticky Mobile Cart */}
